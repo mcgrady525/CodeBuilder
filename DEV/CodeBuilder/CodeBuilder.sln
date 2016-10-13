@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBuilder", "CodeBuilder\CodeBuilder.csproj", "{853B782B-98B0-4E4B-9EBF-B5286C2B8E45}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.1.10/tfs/ssharing
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CodeBuilder\\CodeBuilder.csproj
+		SccProjectName1 = CodeBuilder
+		SccLocalPath1 = CodeBuilder
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{853B782B-98B0-4E4B-9EBF-B5286C2B8E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{853B782B-98B0-4E4B-9EBF-B5286C2B8E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{853B782B-98B0-4E4B-9EBF-B5286C2B8E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{853B782B-98B0-4E4B-9EBF-B5286C2B8E45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
