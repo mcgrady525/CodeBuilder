@@ -28,7 +28,6 @@ namespace CodeBuilder
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnConnect = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,17 +38,9 @@ namespace CodeBuilder
             this.txtServer = new System.Windows.Forms.TextBox();
             this.rbIntegrated = new System.Windows.Forms.RadioButton();
             this.rbSql = new System.Windows.Forms.RadioButton();
+            this.btnTestConnection = new System.Windows.Forms.Button();
+            this.btnConnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnConnect
-            // 
-            this.btnConnect.Location = new System.Drawing.Point(85, 171);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(144, 27);
-            this.btnConnect.TabIndex = 0;
-            this.btnConnect.Text = "连接";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // label1
             // 
@@ -141,12 +132,33 @@ namespace CodeBuilder
             this.rbSql.Text = "sql验证";
             this.rbSql.UseVisualStyleBackColor = true;
             // 
+            // btnTestConnection
+            // 
+            this.btnTestConnection.Location = new System.Drawing.Point(57, 175);
+            this.btnTestConnection.Name = "btnTestConnection";
+            this.btnTestConnection.Size = new System.Drawing.Size(75, 23);
+            this.btnTestConnection.TabIndex = 4;
+            this.btnTestConnection.Text = "测试";
+            this.btnTestConnection.UseVisualStyleBackColor = true;
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(160, 174);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.TabIndex = 5;
+            this.btnConnect.Text = "连接";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
             // FrmConnectDatabase
             // 
-            this.AcceptButton = this.btnConnect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(257, 213);
+            this.ClientSize = new System.Drawing.Size(273, 239);
+            this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.btnTestConnection);
             this.Controls.Add(this.rbSql);
             this.Controls.Add(this.rbIntegrated);
             this.Controls.Add(this.txtDatabase);
@@ -157,7 +169,6 @@ namespace CodeBuilder
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnConnect);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -171,7 +182,6 @@ namespace CodeBuilder
 
         #endregion
 
-        private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label2;
@@ -182,5 +192,7 @@ namespace CodeBuilder
         private System.Windows.Forms.TextBox txtServer;
         private System.Windows.Forms.RadioButton rbIntegrated;
         private System.Windows.Forms.RadioButton rbSql;
+        private System.Windows.Forms.Button btnTestConnection;
+        private System.Windows.Forms.Button btnConnect;
     }
 }

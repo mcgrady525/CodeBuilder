@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -62,6 +62,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tracy.Frameworks.Common">
+      <HintPath>..\..\..\DLL\Tracy.Frameworks.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySerializer.cs" />
@@ -78,6 +81,8 @@
     <Compile Include="CodeGenerate\EntityClassGenerator.cs" />
     <Compile Include="CodeGenerate\Csla\ReadOnlyListClassGenerator.cs" />
     <Compile Include="CodeGenerate\Csla\ReadOnlyClassGenerator.cs" />
+    <Compile Include="Common\CodeBuilderHelper.cs" />
+    <Compile Include="Common\DapperHelper.cs" />
     <Compile Include="Config\ConfigInfo.cs" />
     <Compile Include="Config\ConfigManager.cs" />
     <Compile Include="Csla\FrmGenerateBusinessClass.cs">
@@ -289,7 +294,10 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Template\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

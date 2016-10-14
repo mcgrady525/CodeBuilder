@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using CodeBuilder.Common;
 
 namespace CodeBuilder
 {
@@ -18,25 +19,11 @@ namespace CodeBuilder
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            string sqlString;
-            if (this.rbSql.Checked)
-            {
-                sqlString = String.Format("Data Source={0};Initial Catalog={1};User ID={2};Password={3}",
-                                                        txtServer.Text.Trim(),
-                                                        txtDatabase.Text.Trim(),
-                                                        txtUserName.Text.Trim(),
-                                                        txtPassword.Text.Trim());
-            }
-            else
-            {
-                sqlString = String.Format("Data Source={0};Initial Catalog={1};Integrated Security=True",
-                                                        txtServer.Text.Trim(),
-                                                        txtDatabase.Text.Trim());
-            }
-
+            var connStr = CodeBuilderHelper.CreateConnectString(this.txtServer.Text.Trim(), this.txtDatabase.Text.Trim(),
+                                this.txtUserName.Text.Trim(), this.txtPassword.Text.Trim(), this.rbSql.Checked);
             try
             {
-                using (SqlConnection conn = new SqlConnection(sqlString))
+                using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
                 }
@@ -47,9 +34,48 @@ namespace CodeBuilder
                 return;
             }
 
-            FrmMain.s_ConnectString = sqlString;
+            FrmMain.s_ConnectString = connStr;
 
             this.DialogResult = DialogResult.OK;
+        }
+
+        /// <summary>
+        /// 测试数据库连接是否正常
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTestConnection_Click(object sender, EventArgs e)
+        {
+            //创建一个数据库连接，看是否能正常打开
+            var flag = false;
+            var errorMsg = string.Empty;
+            var connStr = CodeBuilderHelper.CreateConnectString(this.txtServer.Text.Trim(), this.txtDatabase.Text.Trim(),
+                                this.txtUserName.Text.Trim(), this.txtPassword.Text.Trim(), this.rbSql.Checked);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        flag = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMsg = ex.ToString();
+            }
+
+            if (flag)
+            {
+                MessageBox.Show("连接成功!");
+            }
+            else
+            {
+                MessageBox.Show("连接失败,错误信息:" + errorMsg);
+            }
+
         }
     }
 }
