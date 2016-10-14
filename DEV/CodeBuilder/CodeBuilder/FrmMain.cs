@@ -43,7 +43,10 @@ namespace CodeBuilder
 
         private void treeTables_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Text == "用户表" || e.Node.Text == "视图") return;
+            if (e.Node.Text == "用户表" || e.Node.Text == "视图")
+            {
+                return;
+            }
 
             List<ColumnInfo> columnList = DatabaseHelper.GetColumnList(this.treeTables.SelectedNode.Text);
 

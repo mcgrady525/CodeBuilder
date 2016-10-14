@@ -9,33 +9,6 @@ namespace CodeBuilder
 {
     public static class DatabaseHelper
     {
-        /// <summary>
-        /// 获取库中的表或视图名字集合,isTable为true:表, false:视图
-        /// </summary>
-        public static List<string> GetTableOrViewList(bool isTable)
-        {
-            List<string> tableList = new List<string>();            
-            
-            using (SqlConnection conn = new SqlConnection(FrmMain.s_ConnectString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(String.Format("select * from INFORMATION_SCHEMA.TABLES where table_type='{0}' order by TABLE_SCHEMA, TABLE_NAME", isTable ? "BASE TABLE" : "VIEW"), conn))
-                {
-                    using (IDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            tableList.Add(dr["TABLE_SCHEMA"].ToString() + "." + dr["TABLE_NAME"].ToString());
-                        }
-                    }
-                }
-            }
-
-            tableList.Sort();
-
-            return tableList;
-        }
-
         public static DataTable GetColumnInfoDataTable(string tableName)
         {
             using (SqlConnection conn = new SqlConnection(FrmMain.s_ConnectString))

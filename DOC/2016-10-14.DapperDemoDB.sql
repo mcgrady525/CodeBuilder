@@ -3,7 +3,7 @@ GO
 
 
 --user
-SELECT * FROM dbo.t_sys_rights_user;
+SELECT TOP 1 * FROM dbo.t_sys_rights_user;
 
 --create view
 --CREATE VIEW v_GetUserByUserId
@@ -23,6 +23,6 @@ SELECT * FROM dbo.t_sys_rights_user;
 
 --获取当前数据库的所有表，视图
 --存储过程怎么获取？
-select * from INFORMATION_SCHEMA.TABLES;
+SELECT TABLE_SCHEMA, TABLE_NAME, * from INFORMATION_SCHEMA.TABLES;
 
 
