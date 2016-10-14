@@ -16,8 +16,8 @@ namespace CodeBuilder
             InitializeComponent();
         }
 
-        //连接串
-        public static string s_ConnectString;
+        //数据库连接字符串
+        public static string s_ConnectString = string.Empty;
 
         private void FrmMain_Load(object sender, EventArgs e)
         {

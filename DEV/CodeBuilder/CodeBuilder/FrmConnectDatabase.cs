@@ -21,21 +21,9 @@ namespace CodeBuilder
         {
             var connStr = CodeBuilderHelper.CreateConnectString(this.txtServer.Text.Trim(), this.txtDatabase.Text.Trim(),
                                 this.txtUserName.Text.Trim(), this.txtPassword.Text.Trim(), this.rbSql.Checked);
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connStr))
-                {
-                    conn.Open();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "连接失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
 
+            //这里就不再检测数据库连接了
             FrmMain.s_ConnectString = connStr;
-
             this.DialogResult = DialogResult.OK;
         }
 
@@ -69,11 +57,11 @@ namespace CodeBuilder
 
             if (flag)
             {
-                MessageBox.Show("连接成功!");
+                MessageBox.Show("连接成功!!!", "连接成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("连接失败,错误信息:" + errorMsg);
+                MessageBox.Show(errorMsg, "连接失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
