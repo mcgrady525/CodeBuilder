@@ -97,6 +97,7 @@
     <Compile Include="Csla\FrmGenerateBusinessClass.Designer.cs">
       <DependentUpon>FrmGenerateBusinessClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\CommonDao.cs" />
     <Compile Include="FrmConfigEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,8 +189,10 @@
     <Compile Include="FrmQueryData.Designer.cs">
       <DependentUpon>FrmQueryData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Sys\TSysInfoSchemaTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CommonService.cs" />
     <EmbeddedResource Include="Csla\FrmGenerateBusinessClass.resx">
       <DependentUpon>FrmGenerateBusinessClass.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -302,7 +305,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Template\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,11 +6,14 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using CodeBuilder.Service;
 
 namespace CodeBuilder
 {
     public partial class FrmMain : Form
     {
+        private static readonly CommonService commonService = new CommonService();
+
         public FrmMain()
         {
             InitializeComponent();
@@ -21,14 +24,14 @@ namespace CodeBuilder
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            List<string> tables = DatabaseHelper.GetTableOrViewList(true);
+            List<string> tables = commonService.GetTableOrViewList(true);
             TreeNode tableNode = this.treeTables.Nodes.Add("用户表");
             foreach (string item in tables)
             {
                 tableNode.Nodes.Add(item);
             }
 
-            List<string> views = DatabaseHelper.GetTableOrViewList(false);
+            List<string> views = commonService.GetTableOrViewList(false);
             TreeNode viewNode = this.treeTables.Nodes.Add("视图");
             foreach (string item in views)
             {
