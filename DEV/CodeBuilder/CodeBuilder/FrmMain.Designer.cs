@@ -40,10 +40,6 @@ namespace CodeBuilder
             this.获取列信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.获取列详细信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridColumns = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnConfig = new System.Windows.Forms.Button();
-            this.btnGenerateInsertStatements = new System.Windows.Forms.Button();
-            this.btnGenerateEntityClass = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +49,10 @@ namespace CodeBuilder
             this.Column_PropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_PropertyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_PropertyRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnConfig = new System.Windows.Forms.Button();
+            this.btnGenerateInsertStatements = new System.Windows.Forms.Button();
+            this.btnGenerateEntityClass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -151,47 +151,6 @@ namespace CodeBuilder
             this.gridColumns.Size = new System.Drawing.Size(840, 611);
             this.gridColumns.TabIndex = 0;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnConfig);
-            this.panel1.Controls.Add(this.btnGenerateInsertStatements);
-            this.panel1.Controls.Add(this.btnGenerateEntityClass);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(840, 34);
-            this.panel1.TabIndex = 1;
-            // 
-            // btnConfig
-            // 
-            this.btnConfig.Location = new System.Drawing.Point(7, 3);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(94, 25);
-            this.btnConfig.TabIndex = 0;
-            this.btnConfig.Text = "配置生成参数";
-            this.btnConfig.UseVisualStyleBackColor = true;
-            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
-            // 
-            // btnGenerateInsertStatements
-            // 
-            this.btnGenerateInsertStatements.Location = new System.Drawing.Point(211, 3);
-            this.btnGenerateInsertStatements.Name = "btnGenerateInsertStatements";
-            this.btnGenerateInsertStatements.Size = new System.Drawing.Size(98, 25);
-            this.btnGenerateInsertStatements.TabIndex = 0;
-            this.btnGenerateInsertStatements.Text = "生成Insert语句";
-            this.btnGenerateInsertStatements.UseVisualStyleBackColor = true;
-            this.btnGenerateInsertStatements.Click += new System.EventHandler(this.btnGenerateInsertStatements_Click);
-            // 
-            // btnGenerateEntityClass
-            // 
-            this.btnGenerateEntityClass.Location = new System.Drawing.Point(107, 3);
-            this.btnGenerateEntityClass.Name = "btnGenerateEntityClass";
-            this.btnGenerateEntityClass.Size = new System.Drawing.Size(98, 25);
-            this.btnGenerateEntityClass.TabIndex = 0;
-            this.btnGenerateEntityClass.Text = "生成实体类";
-            this.btnGenerateEntityClass.UseVisualStyleBackColor = true;
-            this.btnGenerateEntityClass.Click += new System.EventHandler(this.btnGenerateEntityClass_Click);
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "列名";
@@ -257,6 +216,47 @@ namespace CodeBuilder
             this.Column_PropertyRemark.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column_PropertyRemark.HeaderText = "描述";
             this.Column_PropertyRemark.Name = "Column_PropertyRemark";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnConfig);
+            this.panel1.Controls.Add(this.btnGenerateInsertStatements);
+            this.panel1.Controls.Add(this.btnGenerateEntityClass);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(840, 34);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.Location = new System.Drawing.Point(7, 3);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(94, 25);
+            this.btnConfig.TabIndex = 0;
+            this.btnConfig.Text = "配置生成参数";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
+            // btnGenerateInsertStatements
+            // 
+            this.btnGenerateInsertStatements.Location = new System.Drawing.Point(211, 3);
+            this.btnGenerateInsertStatements.Name = "btnGenerateInsertStatements";
+            this.btnGenerateInsertStatements.Size = new System.Drawing.Size(98, 25);
+            this.btnGenerateInsertStatements.TabIndex = 0;
+            this.btnGenerateInsertStatements.Text = "生成Insert语句";
+            this.btnGenerateInsertStatements.UseVisualStyleBackColor = true;
+            this.btnGenerateInsertStatements.Click += new System.EventHandler(this.btnGenerateInsertStatements_Click);
+            // 
+            // btnGenerateEntityClass
+            // 
+            this.btnGenerateEntityClass.Location = new System.Drawing.Point(107, 3);
+            this.btnGenerateEntityClass.Name = "btnGenerateEntityClass";
+            this.btnGenerateEntityClass.Size = new System.Drawing.Size(98, 25);
+            this.btnGenerateEntityClass.TabIndex = 0;
+            this.btnGenerateEntityClass.Text = "生成实体类";
+            this.btnGenerateEntityClass.UseVisualStyleBackColor = true;
+            this.btnGenerateEntityClass.Click += new System.EventHandler(this.btnGenerateEntityClass_Click);
             // 
             // FrmMain
             // 

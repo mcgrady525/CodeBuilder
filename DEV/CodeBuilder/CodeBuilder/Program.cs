@@ -18,7 +18,8 @@ namespace CodeBuilder
             FrmConnectDatabase frm = new FrmConnectDatabase();
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new FrmMain());
+                //Application.Run(new FrmMain());
+                Application.Run(new FrmMainNew());
             }
         }
     }
