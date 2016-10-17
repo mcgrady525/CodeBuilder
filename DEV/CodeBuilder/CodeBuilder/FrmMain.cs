@@ -48,9 +48,8 @@ namespace CodeBuilder
                 return;
             }
 
-            List<ColumnInfo> columnList = DatabaseHelper.GetColumnList(this.treeTables.SelectedNode.Text);
-
-            this.ShowColumnInfo(columnList);
+            var columns = commonService.GetTableSchemaInfo(this.treeTables.SelectedNode.Text);
+            this.ShowColumnInfo(columns);
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
@@ -103,11 +102,11 @@ namespace CodeBuilder
                                                  column.TypeName,
                                                  column.Length,
                                                  column.IsIdentity,
-                                                 //column.PrivateFieldName,
+                                                 column.IsPrimaryKey,
+                                                 column.IsNullalbe,
                                                  column.PublicPropertyName,
                                                  column.CodeTypeName,
-                                                 column.Remark
-                                                 );
+                                                 column.Remark);
 
                 gridColumns.Rows[index].Tag = column;
             }

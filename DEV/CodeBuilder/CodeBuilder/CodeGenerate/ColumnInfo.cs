@@ -5,7 +5,7 @@ using System.Text;
 namespace CodeBuilder
 {
     /// <summary>
-    /// 数据库列信息
+    /// 数据表列信息
     /// </summary>
     public class ColumnInfo
     {        
@@ -21,7 +21,7 @@ namespace CodeBuilder
 
         private string m_TypeName;
         /// <summary>
-        /// 数据库类型名
+        /// 数据类型
         /// </summary>
         public string TypeName
         {
@@ -31,7 +31,7 @@ namespace CodeBuilder
 
         private int m_Length;
         /// <summary>
-        /// 数据库中字段长度
+        /// 字段长度
         /// </summary>
         public int Length
         {
@@ -60,15 +60,38 @@ namespace CodeBuilder
         }
 
         private bool m_IsIdentity;
+        /// <summary>
+        /// 是否标识
+        /// </summary>
         public bool IsIdentity
         {
             get { return m_IsIdentity; }
             set { m_IsIdentity = value; }
         }
 
+        /// <summary>
+        /// 是否主键
+        /// </summary>
+        public bool IsPrimaryKey { get; set; }
+
+        /// <summary>
+        /// 是否外键
+        /// </summary>
+        public bool IsForeignKey { get; set; }
+
+        /// <summary>
+        /// 是否可空
+        /// </summary>
+        public bool IsNullalbe { get; set; }
+
+        /// <summary>
+        /// 默认值
+        /// </summary>
+        public string DefaultValue { get; set; }
+
         private string m_Remark;
         /// <summary>
-        /// 数据库中的备注
+        /// 列备注
         /// </summary>
         public string Remark
         {
@@ -86,7 +109,7 @@ namespace CodeBuilder
 
         private string m_PublicPropertyName;
         /// <summary>
-        /// 生成代码时的属性名
+        /// 生成代码的属性名
         /// </summary>
         public string PublicPropertyName
         {
@@ -96,7 +119,7 @@ namespace CodeBuilder
 
         private string m_CodeTypeName;
         /// <summary>
-        /// 生成代码时的属性类型名
+        /// 生成代码的属性类型名
         /// </summary>
         public string CodeTypeName
         {

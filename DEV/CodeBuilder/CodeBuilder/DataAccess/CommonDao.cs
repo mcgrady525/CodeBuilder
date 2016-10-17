@@ -24,9 +24,10 @@ namespace CodeBuilder.DataAccess
         {
             var result = new List<TSysInfoSchemaTable>();
 
+            var tableType = isTable ? "BASE TABLE" : "VIEW";
             using (var conn = DapperHelper.CreateConnection())
             {
-                result = conn.Query<TSysInfoSchemaTable>(String.Format("select * from INFORMATION_SCHEMA.TABLES where table_type='{0}' order by TABLE_SCHEMA, TABLE_NAME", isTable ? "BASE TABLE" : "VIEW")).ToList();
+                result = conn.Query<TSysInfoSchemaTable>("select * from INFORMATION_SCHEMA.TABLES where table_type=@TableType order by TABLE_SCHEMA, TABLE_NAME", new { TableType = tableType }).ToList();
             }
 
             return result;
@@ -39,7 +40,8 @@ namespace CodeBuilder.DataAccess
         /// <returns></returns>
         public DataTable GetTableSchemaInfo(string tableName)
         {
-            DataTable dt = null;
+            DataTable dt = new DataTable();
+
             using (var conn = new SqlConnection(FrmMain.s_ConnectString))
             {
                 if (conn.State != ConnectionState.Open)
@@ -49,16 +51,75 @@ namespace CodeBuilder.DataAccess
                 }
                 using (var cmd = new SqlCommand(String.Format("Select TOP 1 * From {0}", tableName), conn))
                 {
-                    using (var adapter = new SqlDataAdapter(cmd))
+                    using (var dr = cmd.ExecuteReader())
                     {
-                        adapter.Fill(dt);
-                        adapter.FillSchema(dt, SchemaType.Source);
+                        dt = dr.GetSchemaTable();
                     }
                 }
             }
 
             return dt;
         }
+
+        /// <summary>
+        /// 设置当前数据表列的备注信息
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="columns"></param>
+        public void SetColumnRemark(string tableName, List<ColumnInfo> columns)
+        {
+            string tableNameShort;
+            string schema;
+            GetTableNameInfo(tableName, out tableNameShort, out schema);
+
+            using (SqlConnection conn = new SqlConnection(FrmMain.s_ConnectString))
+            {
+                if (conn.State!= ConnectionState.Open)
+                {
+                    conn.Close();
+                    conn.Open();
+                }
+
+                foreach (ColumnInfo column in columns)
+                {
+                    string sql = String.Format(
+                        "Select value From ::fn_listextendedproperty (NULL, 'schema', '{0}', 'table', '{1}', 'column', '{2}')",
+                        schema,
+                        tableNameShort,
+                        column.Name);
+
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                column.Remark = dr[0].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #region Private method
+
+        private static void GetTableNameInfo(string tableName, out string tableNameShort, out string schema)
+        {
+            int index = tableName.IndexOf('.');
+            if (index >= 0)
+            {
+                schema = tableName.Substring(0, index);
+                tableNameShort = tableName.Substring(index + 1);
+            }
+            else
+            {
+                tableNameShort = tableName;
+                schema = "dbo";
+            }
+        }
+
+        #endregion
 
 
     }

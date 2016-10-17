@@ -29,9 +29,9 @@ namespace CodeBuilder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeTables = new System.Windows.Forms.TreeView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -40,17 +40,19 @@ namespace CodeBuilder
             this.获取列信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.获取列详细信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridColumns = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column_PropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_PropertyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column_PropertyRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnGenerateInsertStatements = new System.Windows.Forms.Button();
             this.btnGenerateEntityClass = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column_PropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_PropertyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_PropertyRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -74,8 +76,8 @@ namespace CodeBuilder
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gridColumns);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(879, 556);
-            this.splitContainer1.SplitterDistance = 195;
+            this.splitContainer1.Size = new System.Drawing.Size(1084, 645);
+            this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 0;
             // 
             // treeTables
@@ -85,7 +87,7 @@ namespace CodeBuilder
             this.treeTables.HideSelection = false;
             this.treeTables.Location = new System.Drawing.Point(0, 0);
             this.treeTables.Name = "treeTables";
-            this.treeTables.Size = new System.Drawing.Size(195, 556);
+            this.treeTables.Size = new System.Drawing.Size(240, 645);
             this.treeTables.TabIndex = 0;
             this.treeTables.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeTables_AfterSelect);
             // 
@@ -136,6 +138,8 @@ namespace CodeBuilder
             this.Column2,
             this.Column3,
             this.Column4,
+            this.Column5,
+            this.Column6,
             this.Column_PropertyName,
             this.Column_PropertyType,
             this.Column_PropertyRemark});
@@ -144,62 +148,8 @@ namespace CodeBuilder
             this.gridColumns.Name = "gridColumns";
             this.gridColumns.RowHeadersWidth = 20;
             this.gridColumns.RowTemplate.Height = 25;
-            this.gridColumns.Size = new System.Drawing.Size(680, 522);
+            this.gridColumns.Size = new System.Drawing.Size(840, 611);
             this.gridColumns.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "列名";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 140;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "类型";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 60;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "长度";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 40;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "标识";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column4.Width = 40;
-            // 
-            // Column_PropertyName
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column_PropertyName.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column_PropertyName.HeaderText = "属性名";
-            this.Column_PropertyName.Name = "Column_PropertyName";
-            this.Column_PropertyName.Width = 140;
-            // 
-            // Column_PropertyType
-            // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column_PropertyType.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column_PropertyType.HeaderText = "属性类型";
-            this.Column_PropertyType.Name = "Column_PropertyType";
-            this.Column_PropertyType.Width = 80;
-            // 
-            // Column_PropertyRemark
-            // 
-            this.Column_PropertyRemark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column_PropertyRemark.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column_PropertyRemark.HeaderText = "描述";
-            this.Column_PropertyRemark.Name = "Column_PropertyRemark";
             // 
             // panel1
             // 
@@ -209,7 +159,7 @@ namespace CodeBuilder
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(680, 34);
+            this.panel1.Size = new System.Drawing.Size(840, 34);
             this.panel1.TabIndex = 1;
             // 
             // btnConfig
@@ -242,11 +192,77 @@ namespace CodeBuilder
             this.btnGenerateEntityClass.UseVisualStyleBackColor = true;
             this.btnGenerateEntityClass.Click += new System.EventHandler(this.btnGenerateEntityClass_Click);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "列名";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 140;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "类型";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 60;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "长度";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 40;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "标识";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column4.Width = 40;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "主键";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 40;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "允许空";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 40;
+            // 
+            // Column_PropertyName
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column_PropertyName.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column_PropertyName.HeaderText = "属性名";
+            this.Column_PropertyName.Name = "Column_PropertyName";
+            this.Column_PropertyName.Width = 140;
+            // 
+            // Column_PropertyType
+            // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column_PropertyType.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column_PropertyType.HeaderText = "属性类型";
+            this.Column_PropertyType.Name = "Column_PropertyType";
+            this.Column_PropertyType.Width = 80;
+            // 
+            // Column_PropertyRemark
+            // 
+            this.Column_PropertyRemark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column_PropertyRemark.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column_PropertyRemark.HeaderText = "描述";
+            this.Column_PropertyRemark.Name = "Column_PropertyRemark";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 556);
+            this.ClientSize = new System.Drawing.Size(1084, 645);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -274,16 +290,18 @@ namespace CodeBuilder
         private System.Windows.Forms.ToolStripMenuItem 获取列信息ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 获取列详细信息ToolStripMenuItem;
         private System.Windows.Forms.Button btnConfig;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_PropertyName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_PropertyType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column_PropertyRemark;
         private System.Windows.Forms.ToolStripMenuItem 查看所有行ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button btnGenerateEntityClass;
         private System.Windows.Forms.Button btnGenerateInsertStatements;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_PropertyName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_PropertyType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_PropertyRemark;
     }
 }
