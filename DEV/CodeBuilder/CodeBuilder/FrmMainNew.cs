@@ -15,6 +15,7 @@ namespace CodeBuilder
     {
         //数据库连接字符串
         public static string s_ConnectString = string.Empty;
+        public static string s_CurrentDB = string.Empty;
 
         private static readonly CommonService commonService = new CommonService();
 
@@ -37,6 +38,16 @@ namespace CodeBuilder
             this.rb_GenerateType_SingleTable.Checked = true;
             this.rb_CodeType_POCO.Checked = true;
             this.btn_Operation_Batch.Enabled = false;
+            
+            //状态栏
+            this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Left;
+            this.toolStripStatusLabel1.Text = "当前时间："+ DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+
+            this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
+            this.toolStripStatusLabel2.Text = "当前数据库："+ s_CurrentDB;
+
+            this.timer1.Interval = 1000;//1秒更新一次
+            this.timer1.Start();
         }
 
         /// <summary>
@@ -186,6 +197,16 @@ namespace CodeBuilder
         private void btn_Operation_Batch_Click(object sender, EventArgs e)
         {
             MessageBox.Show("批量生成!");
+        }
+
+        /// <summary>
+        /// 计时器事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
         }
 
     }

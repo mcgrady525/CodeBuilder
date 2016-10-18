@@ -42,7 +42,7 @@ namespace CodeBuilder.DataAccess
         {
             DataTable dt = new DataTable();
 
-            using (var conn = new SqlConnection(FrmMain.s_ConnectString))
+            using (var conn = new SqlConnection(FrmMainNew.s_ConnectString))
             {
                 if (conn.State != ConnectionState.Open)
                 {
@@ -72,7 +72,7 @@ namespace CodeBuilder.DataAccess
             string schema;
             GetTableNameInfo(tableName, out tableNameShort, out schema);
 
-            using (SqlConnection conn = new SqlConnection(FrmMain.s_ConnectString))
+            using (SqlConnection conn = new SqlConnection(FrmMainNew.s_ConnectString))
             {
                 if (conn.State!= ConnectionState.Open)
                 {

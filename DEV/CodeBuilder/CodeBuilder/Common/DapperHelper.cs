@@ -18,7 +18,7 @@ namespace CodeBuilder.Common
         /// <returns></returns>
         public static IDbConnection CreateConnection()
         {
-            IDbConnection conn = new SqlConnection(FrmMain.s_ConnectString);
+            IDbConnection conn = new SqlConnection(FrmMainNew.s_ConnectString);
             return conn;
         }
     }

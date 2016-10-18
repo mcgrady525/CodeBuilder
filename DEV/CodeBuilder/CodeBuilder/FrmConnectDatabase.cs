@@ -23,7 +23,9 @@ namespace CodeBuilder
                                 this.txtUserName.Text.Trim(), this.txtPassword.Text.Trim(), this.rbSql.Checked);
 
             //这里就不再检测数据库连接了
-            FrmMain.s_ConnectString = connStr;
+            FrmMainNew.s_ConnectString = connStr;
+            FrmMainNew.s_CurrentDB = this.txtDatabase.Text.Trim();
+
             this.DialogResult = DialogResult.OK;
         }
 
