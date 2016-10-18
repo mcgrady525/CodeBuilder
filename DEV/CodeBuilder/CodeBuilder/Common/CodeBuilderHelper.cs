@@ -46,5 +46,31 @@ namespace CodeBuilder.Common
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 依据表或视图生成类名
+        /// 自动去掉架构名和中间的'_'字符然后每个首字母大写
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static string GetClassNameByTableName(string tableName)
+        {
+            if (tableName.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException("tableName", "tableName不能为空!");
+            }
+
+            var tempTableName = string.Empty;
+            if (tableName.Contains("."))
+            {
+                tempTableName = tableName.Substring(tableName.IndexOf('.') + 1);
+            }
+            else
+            {
+                tempTableName = tableName;
+            }
+
+            return CodeHelper.MakeFirstLetterUppercase(tempTableName);
+        }
+
     }
 }

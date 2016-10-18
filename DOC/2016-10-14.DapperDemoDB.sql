@@ -3,7 +3,7 @@ GO
 
 
 --user
-SELECT TOP 1 * FROM dbo.t_sys_rights_user;
+SELECT * FROM dbo.t_sys_rights_user;
 
 --create view
 --CREATE VIEW v_GetUserByUserId

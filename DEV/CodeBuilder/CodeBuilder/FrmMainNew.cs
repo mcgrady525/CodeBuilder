@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CodeBuilder.Common;
 
 namespace CodeBuilder
 {
@@ -22,7 +23,20 @@ namespace CodeBuilder
             InitializeComponent();
 
             //初始化
+            InitControls();
+        }
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        private void InitControls()
+        {
+            //生成类型默认为单表生成
+            //代码类型默认为数据库实体，并展示代码模板路径
+            //操作中默认只启用单表生成按钮，禁用批量生成按钮
+            this.rb_GenerateType_SingleTable.Checked = true;
+            this.rb_CodeType_POCO.Checked = true;
+            this.btn_Operation_Batch.Enabled = false;
         }
 
         /// <summary>
@@ -64,6 +78,9 @@ namespace CodeBuilder
 
             var columns = commonService.GetTableSchemaInfo(this.treeView1.SelectedNode.Text);
             this.ShowColumnInfo(columns);
+
+            //显示类名
+            this.txt_ParamConfig_ClassName.Text = CodeBuilderHelper.GetClassNameByTableName(this.treeView1.SelectedNode.Text);
         }
 
         #region Private method
@@ -88,9 +105,88 @@ namespace CodeBuilder
             }
         }
 
+        
+
         #endregion
 
+        /// <summary>
+        /// 生成类型单选按钮选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rb_GenerateType_CheckedChange(object sender, EventArgs e)
+        {
+            if (!((RadioButton)sender).Checked)
+            {
+                return;
+            }
 
+            switch (((RadioButton)sender).Text.ToString())
+            {
+                case "单表生成":
+                    this.btn_Operation_Single.Enabled = true;
+                    this.btn_Operation_Batch.Enabled = false;
+                    break;
+                case "批量生成":
+                    this.btn_Operation_Single.Enabled = false;
+                    this.btn_Operation_Batch.Enabled = true;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// 代码类型单选按钮选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rb_CodeType_CheckedChange(object sender, EventArgs e)
+        {
+            if (!((RadioButton)sender).Checked)
+            {
+                return;
+            }
+
+            var templatePath = string.Empty;
+            switch (((RadioButton)sender).Text.ToString())
+            {
+                case "数据库实体":
+                    templatePath = ConfigHelper.GetAppSetting("POCOEntityTemplate");                 
+                    break;
+                case "DAL":
+                    templatePath = ConfigHelper.GetAppSetting("DALTemplate");
+                    break;
+                case "Service":
+                    templatePath = ConfigHelper.GetAppSetting("ServiceTemplate");
+                    break;
+                default:
+                    break;
+            }
+
+            this.lblTemplatePath.Text = ConfigHelper.BASEDIRECTORY+ templatePath;
+        }
+
+        /// <summary>
+        /// 单表生成代码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_Operation_Single_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("单表生成!");
+        }
+
+        /// <summary>
+        /// 批量生成代码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_Operation_Batch_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("批量生成!");
+        }
 
     }
 }
