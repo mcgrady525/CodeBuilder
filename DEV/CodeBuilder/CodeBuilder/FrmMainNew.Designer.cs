@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -100,9 +100,9 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 655);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 660);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(962, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(964, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -132,7 +132,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(962, 655);
+            this.splitContainer1.Size = new System.Drawing.Size(964, 660);
             this.splitContainer1.SplitterDistance = 244;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -141,7 +141,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(244, 655);
+            this.treeView1.Size = new System.Drawing.Size(244, 660);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -159,8 +159,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(714, 375);
-            this.splitContainer2.SplitterDistance = 162;
+            this.splitContainer2.Size = new System.Drawing.Size(716, 380);
+            this.splitContainer2.SplitterDistance = 164;
             this.splitContainer2.TabIndex = 1;
             // 
             // splitContainer3
@@ -177,7 +177,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.gpParamConfig);
-            this.splitContainer3.Size = new System.Drawing.Size(714, 162);
+            this.splitContainer3.Size = new System.Drawing.Size(716, 164);
             this.splitContainer3.SplitterDistance = 51;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -188,7 +188,7 @@
             this.gpGenerateType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpGenerateType.Location = new System.Drawing.Point(0, 0);
             this.gpGenerateType.Name = "gpGenerateType";
-            this.gpGenerateType.Size = new System.Drawing.Size(714, 51);
+            this.gpGenerateType.Size = new System.Drawing.Size(716, 51);
             this.gpGenerateType.TabIndex = 0;
             this.gpGenerateType.TabStop = false;
             this.gpGenerateType.Text = "生成类型";
@@ -228,7 +228,7 @@
             this.gpParamConfig.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpParamConfig.Location = new System.Drawing.Point(0, 0);
             this.gpParamConfig.Name = "gpParamConfig";
-            this.gpParamConfig.Size = new System.Drawing.Size(714, 107);
+            this.gpParamConfig.Size = new System.Drawing.Size(716, 109);
             this.gpParamConfig.TabIndex = 0;
             this.gpParamConfig.TabStop = false;
             this.gpParamConfig.Text = "参数配置";
@@ -295,8 +295,8 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.gpOperation);
-            this.splitContainer4.Size = new System.Drawing.Size(714, 209);
-            this.splitContainer4.SplitterDistance = 113;
+            this.splitContainer4.Size = new System.Drawing.Size(716, 212);
+            this.splitContainer4.SplitterDistance = 114;
             this.splitContainer4.TabIndex = 0;
             // 
             // gpCodeType
@@ -309,7 +309,7 @@
             this.gpCodeType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpCodeType.Location = new System.Drawing.Point(0, 0);
             this.gpCodeType.Name = "gpCodeType";
-            this.gpCodeType.Size = new System.Drawing.Size(714, 113);
+            this.gpCodeType.Size = new System.Drawing.Size(716, 114);
             this.gpCodeType.TabIndex = 0;
             this.gpCodeType.TabStop = false;
             this.gpCodeType.Text = "代码类型";
@@ -357,7 +357,7 @@
             this.gpOperation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpOperation.Location = new System.Drawing.Point(0, 0);
             this.gpOperation.Name = "gpOperation";
-            this.gpOperation.Size = new System.Drawing.Size(714, 92);
+            this.gpOperation.Size = new System.Drawing.Size(716, 94);
             this.gpOperation.TabIndex = 0;
             this.gpOperation.TabStop = false;
             this.gpOperation.Text = "操作";
@@ -404,7 +404,7 @@
             this.dataGridView1.RowHeadersWidth = 20;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(714, 280);
+            this.dataGridView1.Size = new System.Drawing.Size(716, 280);
             this.dataGridView1.TabIndex = 0;
             // 
             // label4
@@ -462,24 +462,24 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle28;
             this.Column7.HeaderText = "属性名";
             this.Column7.Name = "Column7";
             this.Column7.Width = 140;
             // 
             // Column8
             // 
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle29;
             this.Column8.HeaderText = "属性类型";
             this.Column8.Name = "Column8";
             this.Column8.Width = 80;
             // 
             // Column9
             // 
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle30;
             this.Column9.HeaderText = "描述";
             this.Column9.Name = "Column9";
             this.Column9.Width = 200;
@@ -492,7 +492,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 677);
+            this.ClientSize = new System.Drawing.Size(964, 682);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "FrmMainNew";

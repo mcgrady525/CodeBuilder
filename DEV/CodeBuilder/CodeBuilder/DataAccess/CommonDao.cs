@@ -34,7 +34,7 @@ namespace CodeBuilder.DataAccess
         }
 
         /// <summary>
-        /// 获取当前数据表的架构信息
+        /// 获取当前数据表的架构信息(DataGridView展示表元数据用)
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -54,6 +54,35 @@ namespace CodeBuilder.DataAccess
                     using (var dr = cmd.ExecuteReader())
                     {
                         dt = dr.GetSchemaTable();
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+        /// <summary>
+        /// 获取当前数据表的架构信息(生成代码用)
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public DataTable GetTableSchemaInfoByDataAdapter(string tableName)
+        {
+            DataTable dt = new DataTable();
+
+            using (var conn = new SqlConnection(FrmMainNew.s_ConnectString))
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Close();
+                    conn.Open();
+                }
+                using (var cmd = new SqlCommand(String.Format("Select TOP 1 * From {0}", tableName), conn))
+                {
+                    using (var adapter= new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                        adapter.FillSchema(dt, SchemaType.Source);
                     }
                 }
             }

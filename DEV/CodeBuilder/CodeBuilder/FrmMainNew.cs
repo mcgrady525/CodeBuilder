@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CodeBuilder.Common;
+using CodeBuilder.Model.Template;
+using CodeBuilder.Model.Domain;
+using CodeBuilder.Model.Common;
+using Tracy.Frameworks.Common.Extends;
 
 namespace CodeBuilder
 {
@@ -38,13 +42,13 @@ namespace CodeBuilder
             this.rb_GenerateType_SingleTable.Checked = true;
             this.rb_CodeType_POCO.Checked = true;
             this.btn_Operation_Batch.Enabled = false;
-            
+
             //状态栏
             this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Left;
-            this.toolStripStatusLabel1.Text = "当前时间："+ DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
 
             this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
-            this.toolStripStatusLabel2.Text = "当前数据库："+ s_CurrentDB;
+            this.toolStripStatusLabel2.Text = "当前数据库：" + s_CurrentDB;
 
             this.timer1.Interval = 1000;//1秒更新一次
             this.timer1.Start();
@@ -116,7 +120,7 @@ namespace CodeBuilder
             }
         }
 
-        
+
 
         #endregion
 
@@ -164,7 +168,7 @@ namespace CodeBuilder
             switch (((RadioButton)sender).Text.ToString())
             {
                 case "数据库实体":
-                    templatePath = ConfigHelper.GetAppSetting("POCOEntityTemplate");                 
+                    templatePath = ConfigHelper.GetAppSetting("POCOEntityTemplate");
                     break;
                 case "DAL":
                     templatePath = ConfigHelper.GetAppSetting("DALTemplate");
@@ -176,7 +180,7 @@ namespace CodeBuilder
                     break;
             }
 
-            this.lblTemplatePath.Text = ConfigHelper.BASEDIRECTORY+ templatePath;
+            this.lblTemplatePath.Text = ConfigHelper.BASEDIRECTORY + templatePath;
         }
 
         /// <summary>
@@ -186,7 +190,50 @@ namespace CodeBuilder
         /// <param name="e"></param>
         private void btn_Operation_Single_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("单表生成!");
+            //验证
+            if (!CheckSingleTableInput())
+            {
+                return;
+            }
+
+            var request = new CreateCodeRequest
+            {
+                DBName = s_CurrentDB,
+                TableName = this.treeView1.SelectedNode.Text,
+                GenerateType = this.rb_GenerateType_SingleTable.Checked ? GenerateType.SingleTable : this.rb_GenerateType_Batch.Checked ? GenerateType.MultiTable : GenerateType.SingleTable,
+                ClassName= CodeBuilderHelper.GetClassNameByTableName(this.treeView1.SelectedNode.Text),
+                TopNameSpace= this.txt_ParamConfig_TopNameSpace.Text,
+                SecondNameSpace= this.txt_ParamConfig_SecondNameSpace.Text,
+                CodeType= this.rb_CodeType_POCO.Checked? CodeType.POCOEntity: this.rb_CodeType_DAL.Checked? CodeType.DAL: this.rb_CodeType_Service.Checked? CodeType.Service: CodeType.POCOEntity
+            };
+            var result = commonService.GenerateSingleTableCode(request);
+
+            FrmSingleTableGenerate frmSingleTable = new FrmSingleTableGenerate();
+            frmSingleTable.Init(result);
+            frmSingleTable.Show();
+        }
+
+        private bool CheckSingleTableInput()
+        {
+            if (this.treeView1.SelectedNode.Text.IsNullOrEmpty() || this.treeView1.SelectedNode.Text.Equals("用户表") || this.treeView1.SelectedNode.Text.Equals("视图"))
+            {
+                MessageBox.Show("请选择要生成的表或视图!");
+                return false;
+            }
+
+            if (this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("请输入顶级命名空间");
+                return false;
+            }
+
+            if (this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("请输入二级命名空间");
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

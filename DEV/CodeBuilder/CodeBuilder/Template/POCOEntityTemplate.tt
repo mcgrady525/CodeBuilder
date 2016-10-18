@@ -1,6 +1,44 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".txt" #>
+<#@ import namespace="CodeBuilder.Model.Template" #>
+<#@ parameter type="CodeBuilder.Model.Template.EntityClassInfo" name="entity" #>
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+/// <summary>
+/// <#= entity.ClassName#> 的摘要说明
+/// </summary>
+public class <#= entity.ClassName#>
+{
+    public <#= entity.ClassName#>()
+    {
+            //
+            // TODO: 在此处添加构造函数逻辑
+            //
+    }
+<#  foreach(EntityClassPropertyInfo property in entity.RopertyList)
+    { #>
+    private <#= property.PropertyType#> m_<#= property.PropertyName#>;
+<#;
+     }
+#>
+
+<#  foreach(EntityClassPropertyInfo property in entity.RopertyList)
+    { #>
+    public  <#= property.PropertyType#>  <#= property.PropertyName#>
+    {
+        set { m_<#= property.PropertyName#> = value; }
+        get { return m_<#= property.PropertyName#>; }
+    }
+<#;
+    }
+#>
+
+}
