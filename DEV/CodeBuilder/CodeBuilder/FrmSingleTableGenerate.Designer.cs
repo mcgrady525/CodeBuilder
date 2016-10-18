@@ -66,6 +66,8 @@
             this.txt_OutPut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txt_OutPut.Size = new System.Drawing.Size(964, 561);
             this.txt_OutPut.TabIndex = 0;
+            this.txt_OutPut.TabStop = false;
+            this.txt_OutPut.WordWrap = false;
             // 
             // groupBox1
             // 
