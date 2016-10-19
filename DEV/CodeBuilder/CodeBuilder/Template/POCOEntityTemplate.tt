@@ -1,26 +1,53 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ output extension=".txt" #>
+<#@ output extension=".txt" encoding="utf-8" #>
 <#@ import namespace="CodeBuilder.Model.Template" #>
 <#@ parameter type="CodeBuilder.Model.Template.EntityClassInfo" name="entity" #>
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
+using <#= string.Format("{0}.{1}.Attribute", entity.TopNameSpace, entity.SecondNameSpace) #>
 
 /// <summary>
-/// 
+/// <#= entity.ClassDescription #>
 /// </summary>
-public class <#= entity.ClassName#>
+namespace <#= string.Format("{0}.{1}", entity.TopNameSpace, entity.SecondNameSpace) #>
 {
-    public <#= entity.ClassName#>()
-    {
-    }
+	[Serializable]
+	[DataContract(IsReference = true)]
+	[Table("<#= entity.OriginalClassName #>")]
+	public partial class <#= entity.ClassName#>
+	{
+		public <#= entity.ClassName#>()
+		{
+			
+		}
 
-<#  foreach(EntityClassPropertyInfo property in entity.RopertyList)
-    { #>
-    public <#= property.PropertyType#> <#= property.PropertyName#> {get; set;}
-
-<#;
-    }
+<# 
+	foreach(EntityClassPropertyInfo property in entity.RopertyList) { 
 #>
+		/// <summary>
+		/// <#= string.IsNullOrEmpty(property.Remark)?property.OriginalPropertyName: property.Remark #>
+		/// </summary>
+		[DataMember]
+<# 
+		if (property.IsPrimaryKey){ 
+#>
+		[Column("<#= property.OriginalPropertyName #>", ColumnCategory=Category.IdentityKey)]
+<# 
+		}
+        else
+        {
+#>
+		[Column("<#= property.OriginalPropertyName #>")] 
+<# 
+		} 
+#>
+		public <#= property.PropertyType#> <#= property.PropertyName#> { get; set; }
+		
+<# 
+	} 
+#>
+	}
 }

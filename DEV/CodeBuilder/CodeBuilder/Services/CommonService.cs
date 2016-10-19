@@ -44,11 +44,11 @@ namespace CodeBuilder.Service
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public List<ColumnInfo> GetTableSchemaInfo(string tableName)
+        public List<ColumnInfo> GetTableSchemaBySqlDataReader(string tableName)
         {
             var result = new List<ColumnInfo>();
 
-            var dt = commonDao.GetTableSchemaInfo(tableName);
+            var dt = commonDao.GetTableSchemaBySqlDataReader(tableName);
             foreach (DataRow row in dt.Rows)
             {
                 var column = new ColumnInfo
@@ -64,7 +64,7 @@ namespace CodeBuilder.Service
                     CanSet = true
                 };
                 column.PublicPropertyName = CodeHelper.MakeFirstLetterUppercase(column.Name);
-                column.CodeTypeName = CodeHelper.GetCodeTypeName(column.TypeName);
+                column.CodeTypeName = CodeBuilderHelper.ConvertSqlServerTypeToCSharp(column.TypeName);
 
                 result.Add(column);
             }
@@ -73,16 +73,6 @@ namespace CodeBuilder.Service
             commonDao.SetColumnRemark(tableName, result);
 
             return result;
-        }
-
-        /// <summary>
-        /// 获取表的元数据信息并返回DataTable
-        /// </summary>
-        /// <param name="tableName"></param>
-        /// <returns></returns>
-        public DataTable GetDataTableSchemaInfo(string tableName)
-        {
-            return commonDao.GetTableSchemaInfo(tableName);
         }
 
         /// <summary>
@@ -97,8 +87,11 @@ namespace CodeBuilder.Service
             //3，读取T4模板转换后的内容
             //4，返回生成后的代码文本
             var result = string.Empty;
-            var dt = commonDao.GetTableSchemaInfoByDataAdapter(request.TableName);
-            var entityClassInfo = new EntityClassInfo(dt);
+            var dt = commonDao.GetTableSchemaBySqlDataAdapter(request.TableName);
+            var entityClassInfo = new EntityClassInfo(dt, request);
+
+            //设置字段的备注信息
+            commonDao.SetEntityClassPropertyRemark(entityClassInfo, request);
 
             var templatePath = string.Empty;
             if (request.CodeType == CodeType.POCOEntity)
@@ -129,16 +122,16 @@ namespace CodeBuilder.Service
             result = new Engine().ProcessTemplate(input, host);
 
             #region 调试时使用
-            //StringBuilder errorWarn = new StringBuilder();
-            //foreach (CompilerError error in host.Errors)
-            //{
-            //    errorWarn.Append(error.Line).Append(":").AppendLine(error.ErrorText);
-            //}
-            //if (!File.Exists("Error.log"))
-            //{
-            //    File.Create("Error.log");
-            //}
-            //File.WriteAllText("Error.log", errorWarn.ToString());
+            StringBuilder errorWarn = new StringBuilder();
+            foreach (CompilerError error in host.Errors)
+            {
+                errorWarn.Append(error.Line).Append(":").AppendLine(error.ErrorText);
+            }
+            if (!File.Exists("Error.log"))
+            {
+                File.Create("Error.log");
+            }
+            File.WriteAllText("Error.log", errorWarn.ToString());
             #endregion
 
             return result;

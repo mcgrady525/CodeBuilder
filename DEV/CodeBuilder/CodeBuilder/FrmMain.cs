@@ -48,7 +48,7 @@ namespace CodeBuilder
                 return;
             }
 
-            var columns = commonService.GetTableSchemaInfo(this.treeTables.SelectedNode.Text);
+            var columns = commonService.GetTableSchemaBySqlDataReader(this.treeTables.SelectedNode.Text);
             this.ShowColumnInfo(columns);
         }
 

@@ -50,7 +50,7 @@ namespace CodeBuilder.Common
         /// 依据表或视图生成类名
         /// 自动去掉架构名和中间的'_'字符然后每个首字母大写
         /// </summary>
-        /// <param name="tableName"></param>
+        /// <param name="tableName">dbo.t_sys_rights_user或t_sys_rights_user</param>
         /// <returns></returns>
         public static string GetClassNameByTableName(string tableName)
         {
@@ -70,6 +70,118 @@ namespace CodeBuilder.Common
             }
 
             return CodeHelper.MakeFirstLetterUppercase(tempTableName);
+        }
+
+        /// <summary>
+        /// sql server数据类型转换为c#类型
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string ConvertSqlServerTypeToCSharp(string input)
+        {
+            input = input.ToLower();
+            if (input == "char" || input == "nchar" || input == "varchar" || input == "nvarchar")
+            {
+                return "string";
+            }
+            if (input == "bit")
+            {
+                return "bool";
+            }
+            if (input == "tinyint")
+            {
+                return "byte";
+            }
+            if (input == "smallint")
+            {
+                return "short";
+            }
+            if (input == "int")
+            {
+                return "int";
+            }
+            if (input == "bigint")
+            {
+                return "long";
+            }
+            if (input == "float" || input == "double")
+            {
+                return "double";
+            }
+            if (input == "decimal")
+            {
+                return "decimal";
+            }
+            if (input == "smalldatetime" || input == "datetime")
+            {
+                return "datetime";
+            }
+            if (input == "binary" || input == "varbinary")
+            {
+                return "byte[]";
+            }
+            if (input == "uniqueidentifier")
+            {
+                return "Guid";
+            }
+            else
+            {
+                throw new Exception(string.Format("sql server数据类型转换为c#类型失败,不支持的数据库类型:{0}", input));
+            }
+        }
+
+        /// <summary>
+        /// 基元类型转换为c#别名
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string ConvertUserTypeToKeyword(string input)
+        {
+            if (input == "System.String" || input == "System.Char")
+            {
+                return "string";
+            }
+            if (input == "System.Byte")
+            {
+                return "byte";
+            }
+            if (input == "System.Int16")
+            {
+                return "short";
+            }
+            if (input == "System.Int32")
+            {
+                return "int";
+            }
+            if (input == "System.Int64")
+            {
+                return "long";
+            }
+            if (input == "System.Single" || input == "System.Double")
+            {
+                return "double";
+            }
+            if (input == "System.Decimal")
+            {
+                return "decimal";
+            }
+            if (input == "System.DateTime")
+            {
+                return "datetime";
+            }
+            if (input == "System.Boolean")
+            {
+                return "bool";
+            }
+            if (input == "System.Guid")
+            {
+                return "Guid";
+            }
+            else
+            {
+                throw new Exception(string.Format("基元类型转换为c#别名失败,不支持的基元类型:{0}", input));
+            }
+
         }
 
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CodeBuilder.Common;
 
 namespace CodeBuilder
 {
@@ -144,7 +145,7 @@ namespace CodeBuilder
         public void SetDefultValue()
         {
             this.PublicPropertyName = CodeHelper.MakeFirstLetterUppercase(this.Name);
-            this.CodeTypeName = CodeHelper.GetCodeTypeName(this.TypeName);
+            this.CodeTypeName = CodeBuilderHelper.ConvertSqlServerTypeToCSharp(this.TypeName);
 
             this.CanSet = true;// this.Name.ToLower() != "id";
         }

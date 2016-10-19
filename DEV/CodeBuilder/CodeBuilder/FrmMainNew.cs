@@ -91,7 +91,7 @@ namespace CodeBuilder
                 return;
             }
 
-            var columns = commonService.GetTableSchemaInfo(this.treeView1.SelectedNode.Text);
+            var columns = commonService.GetTableSchemaBySqlDataReader(this.treeView1.SelectedNode.Text);
             this.ShowColumnInfo(columns);
 
             //显示类名
@@ -201,10 +201,11 @@ namespace CodeBuilder
                 DBName = s_CurrentDB,
                 TableName = this.treeView1.SelectedNode.Text,
                 GenerateType = this.rb_GenerateType_SingleTable.Checked ? GenerateType.SingleTable : this.rb_GenerateType_Batch.Checked ? GenerateType.MultiTable : GenerateType.SingleTable,
-                ClassName= CodeBuilderHelper.GetClassNameByTableName(this.treeView1.SelectedNode.Text),
-                TopNameSpace= this.txt_ParamConfig_TopNameSpace.Text,
-                SecondNameSpace= this.txt_ParamConfig_SecondNameSpace.Text,
-                CodeType= this.rb_CodeType_POCO.Checked? CodeType.POCOEntity: this.rb_CodeType_DAL.Checked? CodeType.DAL: this.rb_CodeType_Service.Checked? CodeType.Service: CodeType.POCOEntity
+                ClassName = CodeBuilderHelper.GetClassNameByTableName(this.treeView1.SelectedNode.Text),
+                ClassDescription = this.txt_ParamConfig_ClassDescription.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_ClassDescription.Text.Trim(),
+                TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
+                SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
+                CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity
             };
             var result = commonService.GenerateSingleTableCode(request);
 

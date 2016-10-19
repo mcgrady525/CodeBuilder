@@ -33,6 +33,11 @@ namespace CodeBuilder.Model.Domain
         public string ClassName { get; set; }
 
         /// <summary>
+        /// 类的描述
+        /// </summary>
+        public string ClassDescription { get; set; }
+
+        /// <summary>
         /// 顶级命名空间
         /// </summary>
         public string TopNameSpace { get; set; }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -51,6 +51,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.gpCodeType = new System.Windows.Forms.GroupBox();
+            this.lblTemplatePath = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.rb_CodeType_Service = new System.Windows.Forms.RadioButton();
             this.rb_CodeType_DAL = new System.Windows.Forms.RadioButton();
             this.rb_CodeType_POCO = new System.Windows.Forms.RadioButton();
@@ -58,8 +60,6 @@
             this.btn_Operation_Batch = new System.Windows.Forms.Button();
             this.btn_Operation_Single = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblTemplatePath = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +70,8 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_ParamConfig_ClassDescription = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -219,6 +221,8 @@
             // 
             // gpParamConfig
             // 
+            this.gpParamConfig.Controls.Add(this.txt_ParamConfig_ClassDescription);
+            this.gpParamConfig.Controls.Add(this.label5);
             this.gpParamConfig.Controls.Add(this.label3);
             this.gpParamConfig.Controls.Add(this.txt_ParamConfig_SecondNameSpace);
             this.gpParamConfig.Controls.Add(this.txt_ParamConfig_TopNameSpace);
@@ -246,14 +250,14 @@
             // 
             this.txt_ParamConfig_SecondNameSpace.Location = new System.Drawing.Point(366, 63);
             this.txt_ParamConfig_SecondNameSpace.Name = "txt_ParamConfig_SecondNameSpace";
-            this.txt_ParamConfig_SecondNameSpace.Size = new System.Drawing.Size(134, 21);
+            this.txt_ParamConfig_SecondNameSpace.Size = new System.Drawing.Size(150, 21);
             this.txt_ParamConfig_SecondNameSpace.TabIndex = 1;
             // 
             // txt_ParamConfig_TopNameSpace
             // 
             this.txt_ParamConfig_TopNameSpace.Location = new System.Drawing.Point(111, 63);
             this.txt_ParamConfig_TopNameSpace.Name = "txt_ParamConfig_TopNameSpace";
-            this.txt_ParamConfig_TopNameSpace.Size = new System.Drawing.Size(134, 21);
+            this.txt_ParamConfig_TopNameSpace.Size = new System.Drawing.Size(150, 21);
             this.txt_ParamConfig_TopNameSpace.TabIndex = 1;
             // 
             // label2
@@ -313,6 +317,23 @@
             this.gpCodeType.TabIndex = 0;
             this.gpCodeType.TabStop = false;
             this.gpCodeType.Text = "代码类型";
+            // 
+            // lblTemplatePath
+            // 
+            this.lblTemplatePath.AutoSize = true;
+            this.lblTemplatePath.Location = new System.Drawing.Point(91, 72);
+            this.lblTemplatePath.Name = "lblTemplatePath";
+            this.lblTemplatePath.Size = new System.Drawing.Size(0, 12);
+            this.lblTemplatePath.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 73);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "代码模板：";
             // 
             // rb_CodeType_Service
             // 
@@ -407,23 +428,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(716, 280);
             this.dataGridView1.TabIndex = 0;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 73);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "代码模板：";
-            // 
-            // lblTemplatePath
-            // 
-            this.lblTemplatePath.AutoSize = true;
-            this.lblTemplatePath.Location = new System.Drawing.Point(91, 72);
-            this.lblTemplatePath.Name = "lblTemplatePath";
-            this.lblTemplatePath.Size = new System.Drawing.Size(0, 12);
-            this.lblTemplatePath.TabIndex = 4;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "列名";
@@ -462,24 +466,24 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column7.HeaderText = "属性名";
             this.Column7.Name = "Column7";
             this.Column7.Width = 140;
             // 
             // Column8
             // 
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column8.HeaderText = "属性类型";
             this.Column8.Name = "Column8";
             this.Column8.Width = 80;
             // 
             // Column9
             // 
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column9.HeaderText = "描述";
             this.Column9.Name = "Column9";
             this.Column9.Width = 200;
@@ -487,6 +491,22 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(203, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "描述：";
+            // 
+            // txt_ParamConfig_ClassDescription
+            // 
+            this.txt_ParamConfig_ClassDescription.Location = new System.Drawing.Point(250, 24);
+            this.txt_ParamConfig_ClassDescription.Name = "txt_ParamConfig_ClassDescription";
+            this.txt_ParamConfig_ClassDescription.Size = new System.Drawing.Size(266, 21);
+            this.txt_ParamConfig_ClassDescription.TabIndex = 4;
             // 
             // FrmMainNew
             // 
@@ -569,6 +589,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox txt_ParamConfig_ClassDescription;
+        private System.Windows.Forms.Label label5;
 
 
     }

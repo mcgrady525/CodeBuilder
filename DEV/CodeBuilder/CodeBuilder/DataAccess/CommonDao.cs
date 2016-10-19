@@ -8,6 +8,8 @@ using Dapper;
 using Tracy.Frameworks.Common.Extends;
 using System.Data;
 using System.Data.SqlClient;
+using CodeBuilder.Model.Template;
+using CodeBuilder.Model.Domain;
 
 namespace CodeBuilder.DataAccess
 {
@@ -38,7 +40,7 @@ namespace CodeBuilder.DataAccess
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public DataTable GetTableSchemaInfo(string tableName)
+        public DataTable GetTableSchemaBySqlDataReader(string tableName)
         {
             DataTable dt = new DataTable();
 
@@ -66,7 +68,7 @@ namespace CodeBuilder.DataAccess
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public DataTable GetTableSchemaInfoByDataAdapter(string tableName)
+        public DataTable GetTableSchemaBySqlDataAdapter(string tableName)
         {
             DataTable dt = new DataTable();
 
@@ -124,6 +126,46 @@ namespace CodeBuilder.DataAccess
                             if (dr.Read())
                             {
                                 column.Remark = dr[0].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 设置字段的备注信息(生成代码时)
+        /// </summary>
+        /// <param name="entity"></param>
+        public void SetEntityClassPropertyRemark(EntityClassInfo entity, CreateCodeRequest request)
+        {
+            string tableNameShort;
+            string schema;
+            GetTableNameInfo(request.TableName, out tableNameShort, out schema);
+
+            using (SqlConnection conn = new SqlConnection(FrmMainNew.s_ConnectString))
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Close();
+                    conn.Open();
+                }
+
+                foreach (var property in entity.RopertyList)
+                {
+                    string sql = String.Format(
+                        "Select value From ::fn_listextendedproperty (NULL, 'schema', '{0}', 'table', '{1}', 'column', '{2}')",
+                        schema,
+                        tableNameShort,
+                        property.OriginalPropertyName);
+
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                property.Remark = dr[0].ToString();
                             }
                         }
                     }
