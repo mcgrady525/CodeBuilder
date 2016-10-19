@@ -53,8 +53,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(964, 682);
-            this.splitContainer1.SplitterDistance = 561;
+            this.splitContainer1.Size = new System.Drawing.Size(684, 562);
+            this.splitContainer1.SplitterDistance = 462;
             this.splitContainer1.TabIndex = 0;
             // 
             // txt_OutPut
@@ -64,7 +64,7 @@
             this.txt_OutPut.Multiline = true;
             this.txt_OutPut.Name = "txt_OutPut";
             this.txt_OutPut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_OutPut.Size = new System.Drawing.Size(964, 561);
+            this.txt_OutPut.Size = new System.Drawing.Size(684, 462);
             this.txt_OutPut.TabIndex = 0;
             this.txt_OutPut.TabStop = false;
             this.txt_OutPut.WordWrap = false;
@@ -75,7 +75,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(964, 117);
+            this.groupBox1.Size = new System.Drawing.Size(684, 96);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作";
@@ -94,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 682);
+            this.ClientSize = new System.Drawing.Size(684, 562);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmSingleTableGenerate";
             this.Text = "单表生成";
