@@ -52,5 +52,10 @@ namespace CodeBuilder.Model.Domain
         /// </summary>
         public CodeType CodeType { get; set; }
 
+        /// <summary>
+        /// 输出目录(针对批量生成代码)
+        /// </summary>
+        public string OutPutPath { get; set; }
+
     }
 }

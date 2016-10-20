@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 using <#= string.Format("{0}.{1}.Attribute", entity.TopNameSpace, entity.SecondNameSpace) #>
 
 /// <summary>
-/// <#= entity.ClassDescription #>
+/// <#= entity.IsSetClassDescription?entity.ClassDescription:"" #>
 /// </summary>
 namespace <#= string.Format("{0}.{1}", entity.TopNameSpace, entity.SecondNameSpace) #>
 {

@@ -18,9 +18,10 @@ namespace CodeBuilder.Model.Template
             this.ClassDescription = request.ClassDescription;
             this.TopNameSpace = request.TopNameSpace;
             this.SecondNameSpace = request.SecondNameSpace;
+            this.IsSetClassDescription = request.GenerateType == Common.GenerateType.SingleTable;//只有单表生成时才设置类的描述
 
             List<EntityClassPropertyInfo> ropertyListTemp = new List<EntityClassPropertyInfo>();
-           
+
             foreach (DataColumn dcol in dt.Columns)
             {
                 ropertyListTemp.Add(new EntityClassPropertyInfo(dcol));
@@ -37,7 +38,7 @@ namespace CodeBuilder.Model.Template
             this.PrimaryKeyList = primaryKeyListTemp;
             this.NotPrimaryKeyList = notPrimaryKeyListTemp;
         }
-        
+
         /// <summary>
         /// 所有字段
         /// </summary>
@@ -89,6 +90,11 @@ namespace CodeBuilder.Model.Template
         /// 二级命名空间，一般为项目名，如Model或Entity
         /// </summary>
         public string SecondNameSpace { get; set; }
+
+        /// <summary>
+        /// 是否设置类的描述(针对单表生成)
+        /// </summary>
+        public bool IsSetClassDescription { get; set; }
 
     }
 }

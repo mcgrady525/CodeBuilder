@@ -1,5 +1,7 @@
-﻿using CodeBuilder.Model.Common;
+﻿using CodeBuilder.Common;
+using CodeBuilder.Model.Common;
 using CodeBuilder.Model.Domain;
+using CodeBuilder.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tracy.Frameworks.Common.Extends;
 
@@ -14,14 +17,55 @@ namespace CodeBuilder
 {
     public partial class FrmMultiTableGenerate : Form
     {
-        private string topNameSpace = string.Empty;
-        private string secondNameSpace = string.Empty;
-        private CodeType codeType = CodeType.POCOEntity;
+        private static readonly CommonService commonService = new CommonService();
         private List<string> tableViews = new List<string>();
 
         public FrmMultiTableGenerate()
         {
             InitializeComponent();
+
+            //初始化
+            InitControls();
+        }
+
+        /// <summary>
+        /// 控件初始化
+        /// </summary>
+        private void InitControls()
+        {
+            //代码类型默认为数据库实体
+            this.rb_CodeType_POCO.Checked = true;
+        }
+
+        /// <summary>
+        /// 代码类型单选按钮选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rb_CodeType_CheckedChange(object sender, EventArgs e)
+        {
+            if (!((RadioButton)sender).Checked)
+            {
+                return;
+            }
+
+            var templatePath = string.Empty;
+            switch (((RadioButton)sender).Text.ToString())
+            {
+                case "数据库实体":
+                    templatePath = ConfigHelper.GetAppSetting("POCOEntityTemplate");
+                    break;
+                case "DAL":
+                    templatePath = ConfigHelper.GetAppSetting("DALTemplate");
+                    break;
+                case "Service":
+                    templatePath = ConfigHelper.GetAppSetting("ServiceTemplate");
+                    break;
+                default:
+                    break;
+            }
+
+            this.lblTemplatePath.Text = ConfigHelper.BASEDIRECTORY + templatePath;
         }
 
         /// <summary>
@@ -39,9 +83,6 @@ namespace CodeBuilder
             }
 
             //字段赋值
-            topNameSpace = request.TopNameSpace;
-            secondNameSpace = request.SecondNameSpace;
-            codeType = request.CodeType;
             tableViews = request.TableViews;
         }
 
@@ -64,10 +105,82 @@ namespace CodeBuilder
         /// <param name="e"></param>
         private void btn_Operation_OK_Click(object sender, EventArgs e)
         {
-            //批量生成代码
+            var result = string.Empty;
+            try
+            {
+                //校验
+                if (!CheckInput())
+                {
+                    return;
+                }
 
+                var requests = new List<CreateCodeRequest>();
+                for (int i = 0; i < this.lb_SelectTable_Right.Items.Count; i++)
+                {
+                    var tableName = (string)this.lb_SelectTable_Right.Items[i];
+                    var request = new CreateCodeRequest
+                    {
+                        DBName = this.lbl_SelectDB_CurrentDB.Text,
+                        TableName = tableName,
+                        GenerateType = Model.Common.GenerateType.MultiTable,
+                        TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
+                        SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
+                        CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity,
+                        OutPutPath = this.txt_OutPut_Path.Text.Trim()
+                    };
+                    requests.Add(request);
+                }
 
+                //使用并行
+                if (requests.HasValue())
+                {
+                    Parallel.ForEach(requests, item =>
+                    {
+                        commonService.CreateCode(item);
+                    });
+                }
 
+                result = "批量生成代码成功!";
+            }
+            catch (Exception ex)
+            {
+                result = string.Format("批量生成代码失败,失败原因:{0}", ex.ToString());
+            }
+
+            MessageBox.Show(result);
+        }
+
+        /// <summary>
+        /// 输入校验
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckInput()
+        {
+            //选择表和视图
+            //输入顶级和二级命名空间
+            //选择输出目录
+            if (this.lb_SelectTable_Right.Items.Count == 0)
+            {
+                MessageBox.Show("请选择表或视图!");
+                return false;
+            }
+            if (this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("请输入顶级命名空间!");
+                return false;
+            }
+            if (this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("请输入二级命名空间!");
+                return false;
+            }
+            if (this.txt_OutPut_Path.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("请选择输出目录!");
+                return false;
+            }
+
+            return true;
         }
 
         //关闭

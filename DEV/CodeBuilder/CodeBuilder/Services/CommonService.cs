@@ -76,16 +76,16 @@ namespace CodeBuilder.Service
         }
 
         /// <summary>
-        /// 生成单表代码
+        /// 生成代码
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public string GenerateSingleTableCode(CreateCodeRequest request)
+        public string CreateCode(CreateCodeRequest request)
         {
             //1，读取数据表元数据信息，并初始化EntityClassInfo
             //2，给T4模板传参
             //3，读取T4模板转换后的内容
-            //4，返回生成后的代码文本
+            //4，返回生成后的代码文本(单表生成时返回代码文本，批量生成时写到输出目录)
             var result = string.Empty;
             var dt = commonDao.GetTableSchemaBySqlDataAdapter(request.TableName);
             var entityClassInfo = new EntityClassInfo(dt, request);
@@ -101,16 +101,16 @@ namespace CodeBuilder.Service
             if (request.CodeType == CodeType.DAL)
             {
                 templatePath = ConfigHelper.BASEDIRECTORY + ConfigHelper.GetAppSetting("DALTemplate");
-                return "开发中...";
+                throw new Exception(string.Format("模板:{0}的功能正在开发中...", "DAL"));
             }
             if (request.CodeType == CodeType.Service)
             {
                 templatePath = ConfigHelper.BASEDIRECTORY + ConfigHelper.GetAppSetting("ServiceTemplate");
-                return "开发中...";
+                throw new Exception(string.Format("模板:{0}的功能正在开发中...", "Service"));
             }
             if (!File.Exists(templatePath))
             {
-                return "找不到模板，请确认模板配置!";
+                throw new Exception("找不到模板，请确认模板配置!");
             }
 
             CustomTextTemplatingEngineHost host = new CustomTextTemplatingEngineHost();
@@ -127,12 +127,23 @@ namespace CodeBuilder.Service
             {
                 errorWarn.Append(error.Line).Append(":").AppendLine(error.ErrorText);
             }
-            if (!File.Exists("Error.log"))
+
+            //考虑多线程
+            lock (this)
             {
-                File.Create("Error.log");
+                if (!File.Exists("Error.log"))
+                {
+                    File.Create("Error.log");
+                }
+                File.WriteAllText("Error.log", errorWarn.ToString()); 
             }
-            File.WriteAllText("Error.log", errorWarn.ToString());
             #endregion
+
+            //批量生成时写到输出目录然后再返回文本
+            if (request.GenerateType == GenerateType.MultiTable)
+            {
+                File.WriteAllText(string.Format("{0}\\{1}.cs", request.OutPutPath, entityClassInfo.ClassName), result);
+            }
 
             return result;
         }

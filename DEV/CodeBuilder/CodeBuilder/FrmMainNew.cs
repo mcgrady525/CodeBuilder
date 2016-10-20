@@ -143,15 +143,17 @@ namespace CodeBuilder
                     this.btn_Operation_Single.Enabled = true;
                     this.btn_Operation_Batch.Enabled = false;
 
-                    this.txt_ParamConfig_ClassName.Enabled = true;
-                    this.txt_ParamConfig_ClassDescription.Enabled = true;
+                    this.gpParamConfig.Enabled = true;
+                    this.gpCodeType.Enabled = true;
+
                     break;
                 case "批量生成":
                     this.btn_Operation_Single.Enabled = false;
                     this.btn_Operation_Batch.Enabled = true;
 
-                    this.txt_ParamConfig_ClassName.Enabled = false;
-                    this.txt_ParamConfig_ClassDescription.Enabled = false;
+                    this.gpParamConfig.Enabled = false;
+                    this.gpCodeType.Enabled = false;
+
                     break;
                 default:
                     break;
@@ -197,24 +199,32 @@ namespace CodeBuilder
         /// <param name="e"></param>
         private void btn_Operation_Single_Click(object sender, EventArgs e)
         {
-            //验证
-            if (!CheckSingleTableInput())
+            var result = string.Empty;
+            try
             {
-                return;
-            }
+                //验证
+                if (!CheckSingleTableInput())
+                {
+                    return;
+                }
 
-            var request = new CreateCodeRequest
+                var request = new CreateCodeRequest
+                {
+                    DBName = s_CurrentDB,
+                    TableName = this.treeView1.SelectedNode.Text,
+                    GenerateType = this.rb_GenerateType_SingleTable.Checked ? GenerateType.SingleTable : this.rb_GenerateType_Batch.Checked ? GenerateType.MultiTable : GenerateType.SingleTable,
+                    ClassName = CodeBuilderHelper.GetClassNameByTableName(this.treeView1.SelectedNode.Text),
+                    ClassDescription = this.txt_ParamConfig_ClassDescription.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_ClassDescription.Text.Trim(),
+                    TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
+                    SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
+                    CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity
+                };
+                result = commonService.CreateCode(request);
+            }
+            catch (Exception ex)
             {
-                DBName = s_CurrentDB,
-                TableName = this.treeView1.SelectedNode.Text,
-                GenerateType = this.rb_GenerateType_SingleTable.Checked ? GenerateType.SingleTable : this.rb_GenerateType_Batch.Checked ? GenerateType.MultiTable : GenerateType.SingleTable,
-                ClassName = CodeBuilderHelper.GetClassNameByTableName(this.treeView1.SelectedNode.Text),
-                ClassDescription = this.txt_ParamConfig_ClassDescription.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_ClassDescription.Text.Trim(),
-                TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
-                SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
-                CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity
-            };
-            var result = commonService.GenerateSingleTableCode(request);
+                result = ex.ToString();
+            }
 
             FrmSingleTableGenerate frmSingleTable = new FrmSingleTableGenerate();
             frmSingleTable.Init(result);
@@ -292,9 +302,6 @@ namespace CodeBuilder
             {
                 CurrentServer = s_CurrentServer,
                 CurrentDB = s_CurrentDB,
-                TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
-                SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
-                CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity,
                 TableViews = tableViews
             };
 

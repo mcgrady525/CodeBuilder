@@ -23,21 +23,6 @@ namespace CodeBuilder.Model.Domain
         public string CurrentDB { get; set; }
 
         /// <summary>
-        /// 顶级命名空间
-        /// </summary>
-        public string TopNameSpace { get; set; }
-
-        /// <summary>
-        /// 二级命名空间
-        /// </summary>
-        public string SecondNameSpace { get; set; }
-
-        /// <summary>
-        /// 代码类型
-        /// </summary>
-        public CodeType CodeType { get; set; }
-
-        /// <summary>
         /// 所有的表和视图名称
         /// </summary>
         public List<string> TableViews { get; set; }
