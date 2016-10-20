@@ -220,6 +220,7 @@
             this.lb_SelectTable_Left.Location = new System.Drawing.Point(22, 34);
             this.lb_SelectTable_Left.Name = "lb_SelectTable_Left";
             this.lb_SelectTable_Left.ScrollAlwaysVisible = true;
+            this.lb_SelectTable_Left.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lb_SelectTable_Left.Size = new System.Drawing.Size(180, 196);
             this.lb_SelectTable_Left.TabIndex = 0;
             // 
@@ -232,6 +233,7 @@
             this.btn_SelectTable_All.TabIndex = 1;
             this.btn_SelectTable_All.Text = ">>";
             this.btn_SelectTable_All.UseVisualStyleBackColor = true;
+            this.btn_SelectTable_All.Click += new System.EventHandler(this.btn_SelectTable_All_Click);
             // 
             // btn_SelectTable_SelectOne
             // 
@@ -242,6 +244,7 @@
             this.btn_SelectTable_SelectOne.TabIndex = 1;
             this.btn_SelectTable_SelectOne.Text = ">";
             this.btn_SelectTable_SelectOne.UseVisualStyleBackColor = true;
+            this.btn_SelectTable_SelectOne.Click += new System.EventHandler(this.btn_SelectTable_SelectOne_Click);
             // 
             // btn_SelectTable_UnSelectOne
             // 
@@ -252,6 +255,7 @@
             this.btn_SelectTable_UnSelectOne.TabIndex = 1;
             this.btn_SelectTable_UnSelectOne.Text = "<";
             this.btn_SelectTable_UnSelectOne.UseVisualStyleBackColor = true;
+            this.btn_SelectTable_UnSelectOne.Click += new System.EventHandler(this.btn_SelectTable_UnSelectOne_Click);
             // 
             // btn_SelectTable_UnAll
             // 
@@ -262,6 +266,7 @@
             this.btn_SelectTable_UnAll.TabIndex = 1;
             this.btn_SelectTable_UnAll.Text = "<<";
             this.btn_SelectTable_UnAll.UseVisualStyleBackColor = true;
+            this.btn_SelectTable_UnAll.Click += new System.EventHandler(this.btn_SelectTable_UnAll_Click);
             // 
             // lb_SelectTable_Right
             // 
@@ -270,6 +275,7 @@
             this.lb_SelectTable_Right.Location = new System.Drawing.Point(329, 34);
             this.lb_SelectTable_Right.Name = "lb_SelectTable_Right";
             this.lb_SelectTable_Right.ScrollAlwaysVisible = true;
+            this.lb_SelectTable_Right.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lb_SelectTable_Right.Size = new System.Drawing.Size(180, 196);
             this.lb_SelectTable_Right.TabIndex = 0;
             // 
@@ -307,6 +313,7 @@
             this.btn_Operation_OK.TabIndex = 0;
             this.btn_Operation_OK.Text = "确定";
             this.btn_Operation_OK.UseVisualStyleBackColor = true;
+            this.btn_Operation_OK.Click += new System.EventHandler(this.btn_Operation_OK_Click);
             // 
             // btn_Operation_Close
             // 
@@ -316,6 +323,7 @@
             this.btn_Operation_Close.TabIndex = 0;
             this.btn_Operation_Close.Text = "关闭";
             this.btn_Operation_Close.UseVisualStyleBackColor = true;
+            this.btn_Operation_Close.Click += new System.EventHandler(this.btn_Operation_Close_Click);
             // 
             // FrmMultiTableGenerate
             // 
