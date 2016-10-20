@@ -196,6 +196,12 @@
     <Compile Include="FrmMainNew.Designer.cs">
       <DependentUpon>FrmMainNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMultiTableGenerate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMultiTableGenerate.Designer.cs">
+      <DependentUpon>FrmMultiTableGenerate.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmQueryData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,7 @@
     </Compile>
     <Compile Include="Model\Common\Enums.cs" />
     <Compile Include="Model\Domain\CreateCodeRequest.cs" />
+    <Compile Include="Model\Domain\InitMultiTableRequest.cs" />
     <Compile Include="Model\Sys\TSysInfoSchemaTable.cs" />
     <Compile Include="Model\Template\CustomTextTemplatingEngineHost.cs" />
     <Compile Include="Model\Template\EntityClassInfo.cs" />
@@ -277,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMainNew.resx">
       <DependentUpon>FrmMainNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMultiTableGenerate.resx">
+      <DependentUpon>FrmMultiTableGenerate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmQueryData.resx">
       <DependentUpon>FrmQueryData.cs</DependentUpon>

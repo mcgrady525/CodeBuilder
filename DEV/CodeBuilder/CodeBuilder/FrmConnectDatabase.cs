@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using CodeBuilder.Common;
+using Tracy.Frameworks.Common.Extends;
 
 namespace CodeBuilder
 {
@@ -24,7 +25,8 @@ namespace CodeBuilder
 
             //这里就不再检测数据库连接了
             FrmMainNew.s_ConnectString = connStr;
-            FrmMainNew.s_CurrentDB = this.txtDatabase.Text.Trim();
+            FrmMainNew.s_CurrentServer = this.txtServer.Text.IsNullOrEmpty() ? "" : this.txtServer.Text.Trim();
+            FrmMainNew.s_CurrentDB = this.txtDatabase.Text.IsNullOrEmpty() ? "" : this.txtDatabase.Text.Trim();
 
             this.DialogResult = DialogResult.OK;
         }

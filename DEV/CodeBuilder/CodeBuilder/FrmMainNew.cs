@@ -19,6 +19,7 @@ namespace CodeBuilder
     {
         //数据库连接字符串
         public static string s_ConnectString = string.Empty;
+        public static string s_CurrentServer = string.Empty;
         public static string s_CurrentDB = string.Empty;
 
         private static readonly CommonService commonService = new CommonService();
@@ -141,10 +142,16 @@ namespace CodeBuilder
                 case "单表生成":
                     this.btn_Operation_Single.Enabled = true;
                     this.btn_Operation_Batch.Enabled = false;
+
+                    this.txt_ParamConfig_ClassName.Enabled = true;
+                    this.txt_ParamConfig_ClassDescription.Enabled = true;
                     break;
                 case "批量生成":
                     this.btn_Operation_Single.Enabled = false;
                     this.btn_Operation_Batch.Enabled = true;
+
+                    this.txt_ParamConfig_ClassName.Enabled = false;
+                    this.txt_ParamConfig_ClassDescription.Enabled = false;
                     break;
                 default:
                     break;
@@ -244,7 +251,56 @@ namespace CodeBuilder
         /// <param name="e"></param>
         private void btn_Operation_Batch_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("批量生成!");
+            var tableViews = new List<string>();
+            TreeNode userTableRootNode = null;
+            TreeNode userViewRootNode = null;
+            if (this.treeView1.Nodes.Count > 0)
+            {
+                foreach (var node in this.treeView1.Nodes)
+                {
+                    var tempNode = (TreeNode)node;
+                    if (tempNode.Text == "用户表")
+                    {
+                        userTableRootNode = tempNode;
+                    }
+                    if (tempNode.Text == "视图")
+                    {
+                        userViewRootNode = tempNode;
+                    }
+                }
+            }
+
+            //用户表下是否存在数据
+            if (userTableRootNode != null && userTableRootNode.Nodes.Count > 0)
+            {
+                foreach (var node in userTableRootNode.Nodes)
+                {
+                    tableViews.Add(((TreeNode)node).Text);
+                }
+            }
+
+            //视图下是否存在数据
+            if (userViewRootNode != null && userViewRootNode.Nodes.Count > 0)
+            {
+                foreach (var node in userViewRootNode.Nodes)
+                {
+                    tableViews.Add(((TreeNode)node).Text);
+                }
+            }
+
+            var request = new InitMultiTableRequest
+            {
+                CurrentServer = s_CurrentServer,
+                CurrentDB = s_CurrentDB,
+                TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
+                SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
+                CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity,
+                TableViews = tableViews
+            };
+
+            FrmMultiTableGenerate frmMultiTable = new FrmMultiTableGenerate();
+            frmMultiTable.Init(request);
+            frmMultiTable.Show();
         }
 
         /// <summary>
