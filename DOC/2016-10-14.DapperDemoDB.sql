@@ -26,3 +26,8 @@ SELECT * FROM dbo.t_sys_rights_user;
 SELECT TABLE_SCHEMA, TABLE_NAME, * from INFORMATION_SCHEMA.TABLES;
 
 
+--dbo.v_GetUserByUserId
+SELECT * FROM dbo.v_GetUserByUserId;
+
+
+
