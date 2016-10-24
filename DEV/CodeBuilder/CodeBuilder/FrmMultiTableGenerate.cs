@@ -134,6 +134,9 @@ namespace CodeBuilder
                 //使用并行
                 if (requests.HasValue())
                 {
+                    //按tableName排序
+                    requests = requests.OrderBy(p => p.TableName).ToList();
+
                     Parallel.ForEach(requests, item =>
                     {
                         commonService.CreateCode(item);

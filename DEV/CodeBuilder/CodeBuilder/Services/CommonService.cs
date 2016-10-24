@@ -135,14 +135,17 @@ namespace CodeBuilder.Service
                 {
                     File.Create("Error.log");
                 }
-                File.WriteAllText("Error.log", errorWarn.ToString()); 
+                File.WriteAllText("Error.log", errorWarn.ToString());
             }
             #endregion
 
             //批量生成时写到输出目录然后再返回文本
             if (request.GenerateType == GenerateType.MultiTable)
             {
-                File.WriteAllText(string.Format("{0}\\{1}.cs", request.OutPutPath, entityClassInfo.ClassName), result);
+                lock (this)
+                {
+                    File.WriteAllText(string.Format("{0}\\{1}.cs", request.OutPutPath, entityClassInfo.ClassName), result);
+                }
             }
 
             return result;

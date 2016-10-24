@@ -14,7 +14,7 @@ namespace CodeBuilder.Model.Template
         public EntityClassInfo(DataTable dt, CreateCodeRequest request)
         {
             this.OriginalClassName = request.TableName;
-            this.ClassName = CodeBuilderHelper.GetClassNameByTableName(dt.TableName);
+            this.ClassName = CodeBuilderHelper.GetClassNameByTableName(request.TableName);
             this.ClassDescription = request.ClassDescription;
             this.TopNameSpace = request.TopNameSpace;
             this.SecondNameSpace = request.SecondNameSpace;
