@@ -12,6 +12,7 @@ using CodeBuilder.Model.Template;
 using CodeBuilder.Model.Domain;
 using CodeBuilder.Model.Common;
 using Tracy.Frameworks.Common.Extends;
+using Tracy.Frameworks.Common.Const;
 
 namespace CodeBuilder
 {
@@ -46,7 +47,7 @@ namespace CodeBuilder
 
             //状态栏
             this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Left;
-            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString(DateFormat.DATETIME);
 
             this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
             this.toolStripStatusLabel2.Text = "当前数据库：" + s_CurrentDB;
@@ -317,7 +318,7 @@ namespace CodeBuilder
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString(DateFormat.DATETIME);
         }
 
     }
