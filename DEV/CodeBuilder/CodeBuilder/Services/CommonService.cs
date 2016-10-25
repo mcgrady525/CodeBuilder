@@ -18,6 +18,7 @@ namespace CodeBuilder.Service
     public partial class CommonService
     {
         private static readonly CommonDao commonDao = new CommonDao();
+        private static object lockObj = new object();
 
         /// <summary>
         /// 获取当前数据库中的所有用户表和视图列表
@@ -128,21 +129,29 @@ namespace CodeBuilder.Service
                 errorWarn.Append(error.Line).Append(":").AppendLine(error.ErrorText);
             }
 
-            //考虑多线程
-            lock (this)
+            if (!errorWarn.ToString().IsNullOrEmpty())//有错误
             {
-                if (!File.Exists("Error.log"))
+                //考虑多线程
+                lock (lockObj)
                 {
-                    File.Create("Error.log");
+                    if (!File.Exists("Error.log"))
+                    {
+                        File.Create("Error.log");
+                    }
+                    File.WriteAllText("Error.log", errorWarn.ToString());
                 }
-                File.WriteAllText("Error.log", errorWarn.ToString());
+
+                //退出
+                throw new Exception(string.Format("生成代码过程中失败,失败原因:{0}", errorWarn.ToString()));
             }
+
+            
             #endregion
 
             //批量生成时写到输出目录然后再返回文本
             if (request.GenerateType == GenerateType.MultiTable)
             {
-                lock (this)
+                lock (lockObj)
                 {
                     File.WriteAllText(string.Format("{0}\\{1}.cs", request.OutPutPath, entityClassInfo.ClassName), result);
                 }
