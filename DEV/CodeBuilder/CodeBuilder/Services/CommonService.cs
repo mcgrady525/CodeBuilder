@@ -131,30 +131,23 @@ namespace CodeBuilder.Service
 
             if (!errorWarn.ToString().IsNullOrEmpty())//有错误
             {
-                //考虑多线程
-                lock (lockObj)
+                if (!File.Exists("Error.log"))
                 {
-                    if (!File.Exists("Error.log"))
-                    {
-                        File.Create("Error.log");
-                    }
-                    File.WriteAllText("Error.log", errorWarn.ToString());
+                    File.Create("Error.log");
                 }
+                File.WriteAllText("Error.log", errorWarn.ToString());
 
-                //退出
+                //退出不继续
                 throw new Exception(string.Format("生成代码过程中失败,失败原因:{0}", errorWarn.ToString()));
             }
 
-            
+
             #endregion
 
             //批量生成时写到输出目录然后再返回文本
             if (request.GenerateType == GenerateType.MultiTable)
             {
-                lock (lockObj)
-                {
-                    File.WriteAllText(string.Format("{0}\\{1}.cs", request.OutPutPath, entityClassInfo.ClassName), result);
-                }
+                File.WriteAllText(string.Format("{0}\\{1}.cs", request.OutPutPath, entityClassInfo.ClassName), result);
             }
 
             return result;

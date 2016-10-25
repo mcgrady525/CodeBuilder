@@ -132,15 +132,16 @@ namespace CodeBuilder
                 }
 
                 //使用并行
+                //使用并行会有各种问题，先不使用多线程
                 if (requests.HasValue())
                 {
                     //按tableName排序
                     requests = requests.OrderBy(p => p.TableName).ToList();
 
-                    Parallel.ForEach(requests, item =>
+                    foreach (var item in requests)
                     {
                         commonService.CreateCode(item);
-                    });
+                    }
                 }
 
                 result = "批量生成代码成功!";
