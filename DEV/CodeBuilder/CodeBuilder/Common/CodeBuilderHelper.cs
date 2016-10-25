@@ -167,7 +167,7 @@ namespace CodeBuilder.Common
             }
             if (input == "System.DateTime")
             {
-                return "datetime";
+                return "DateTime";
             }
             if (input == "System.Boolean")
             {
