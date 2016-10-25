@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
-using <#= string.Format("{0}.Attribute", entity.TopNameSpace) #>
+using <#= string.Format("{0}.Attribute;", entity.TopNameSpace) #>
 
 /// <summary>
 /// <#= entity.IsSetClassDescription?entity.ClassDescription:"" #>
