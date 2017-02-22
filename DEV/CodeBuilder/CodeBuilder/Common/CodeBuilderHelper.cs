@@ -145,6 +145,10 @@ namespace CodeBuilder.Common
             {
                 return "byte";
             }
+            if (input == "System.Byte[]")
+            {
+                return "byte[]";
+            }
             if (input == "System.Int16")
             {
                 return "short";
