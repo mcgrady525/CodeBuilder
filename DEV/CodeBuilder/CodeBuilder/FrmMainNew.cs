@@ -11,8 +11,8 @@ using CodeBuilder.Common;
 using CodeBuilder.Model.Template;
 using CodeBuilder.Model.Domain;
 using CodeBuilder.Model.Common;
-using Tracy.Frameworks.Common.Extends;
-using Tracy.Frameworks.Common.Const;
+using SSharing.Frameworks.Common.Extends;
+using SSharing.Frameworks.Common.Consts;
 
 namespace CodeBuilder
 {
@@ -47,7 +47,7 @@ namespace CodeBuilder
 
             //状态栏
             this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Left;
-            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString(DateFormat.DATETIME);
+            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString(DateTimeTypeConst.DATETIME);
 
             this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
             this.toolStripStatusLabel2.Text = "当前数据库：" + s_CurrentDB;
@@ -64,21 +64,26 @@ namespace CodeBuilder
         private void FrmMainNew_Load(object sender, EventArgs e)
         {
             List<string> tables = commonService.GetTableOrViewList(true);
-            TreeNode tableNode = this.treeView1.Nodes.Add("用户表");
-            foreach (string item in tables)
+            TreeNode tableNode = this.treeView1.Nodes.Add("Tables");
+            if (tables.HasValue())
             {
-                tableNode.Nodes.Add(item);
+                foreach (string item in tables)
+                {
+                    tableNode.Nodes.Add(item);
+                } 
             }
 
             List<string> views = commonService.GetTableOrViewList(false);
-            TreeNode viewNode = this.treeView1.Nodes.Add("视图");
-            foreach (string item in views)
+            TreeNode viewNode = this.treeView1.Nodes.Add("Views");
+            if (views.HasValue())
             {
-                viewNode.Nodes.Add(item);
+                foreach (string item in views)
+                {
+                    viewNode.Nodes.Add(item);
+                } 
             }
 
             treeView1.ExpandAll();
-
         }
 
         /// <summary>
@@ -88,7 +93,7 @@ namespace CodeBuilder
         /// <param name="e"></param>
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Text == "用户表" || e.Node.Text == "视图")
+            if (e.Node.Text == "Tables" || e.Node.Text == "Views")
             {
                 return;
             }
@@ -121,9 +126,7 @@ namespace CodeBuilder
                 dataGridView1.Rows[index].Tag = column;
             }
         }
-
-
-
+        
         #endregion
 
         /// <summary>
@@ -237,9 +240,9 @@ namespace CodeBuilder
 
         private bool CheckSingleTableInput()
         {
-            if (this.treeView1.SelectedNode.Text.IsNullOrEmpty() || this.treeView1.SelectedNode.Text.Equals("用户表") || this.treeView1.SelectedNode.Text.Equals("视图"))
+            if (this.treeView1.SelectedNode.Text.IsNullOrEmpty() || this.treeView1.SelectedNode.Text.Equals("Tables") || this.treeView1.SelectedNode.Text.Equals("Views"))
             {
-                MessageBox.Show("请选择要生成的表或视图!");
+                MessageBox.Show("请选择要生成的Tables或Views!");
                 return false;
             }
 
@@ -273,18 +276,18 @@ namespace CodeBuilder
                 foreach (var node in this.treeView1.Nodes)
                 {
                     var tempNode = (TreeNode)node;
-                    if (tempNode.Text == "用户表")
+                    if (tempNode.Text == "Tables")
                     {
                         userTableRootNode = tempNode;
                     }
-                    if (tempNode.Text == "视图")
+                    if (tempNode.Text == "Views")
                     {
                         userViewRootNode = tempNode;
                     }
                 }
             }
 
-            //用户表下是否存在数据
+            //Tables下是否存在数据
             if (userTableRootNode != null && userTableRootNode.Nodes.Count > 0)
             {
                 foreach (var node in userTableRootNode.Nodes)
@@ -293,7 +296,7 @@ namespace CodeBuilder
                 }
             }
 
-            //视图下是否存在数据
+            //Views下是否存在数据
             if (userViewRootNode != null && userViewRootNode.Nodes.Count > 0)
             {
                 foreach (var node in userViewRootNode.Nodes)
@@ -321,7 +324,7 @@ namespace CodeBuilder
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString(DateFormat.DATETIME);
+            this.toolStripStatusLabel1.Text = "当前时间：" + DateTime.Now.ToString(DateTimeTypeConst.DATETIME);
         }
 
     }

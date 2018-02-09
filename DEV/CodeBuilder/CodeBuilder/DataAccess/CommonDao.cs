@@ -5,7 +5,7 @@ using System.Text;
 using CodeBuilder.Common;
 using CodeBuilder.Model.Sys;
 using Dapper;
-using Tracy.Frameworks.Common.Extends;
+using SSharing.Frameworks.Common.Extends;
 using System.Data;
 using System.Data.SqlClient;
 using CodeBuilder.Model.Template;

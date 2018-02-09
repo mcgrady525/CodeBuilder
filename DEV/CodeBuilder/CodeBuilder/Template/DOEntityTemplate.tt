@@ -32,17 +32,11 @@ namespace <#= string.Format("{0}.{1}", entity.TopNameSpace, entity.SecondNameSpa
 <# 
 		if (property.IsPrimaryKey){ 
 #>
-		[Key]
-		[Column("<#= property.OriginalPropertyName #>")] 
+		[Key] 
 <# 
 		}
-        else
-        {
 #>
 		[Column("<#= property.OriginalPropertyName #>")] 
-<# 
-		} 
-#>
 		public <#= property.PropertyType#> <#= property.PropertyName#> { get; set; }
 		
 <# 

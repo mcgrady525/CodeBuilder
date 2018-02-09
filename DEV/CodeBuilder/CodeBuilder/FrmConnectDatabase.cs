@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using CodeBuilder.Common;
-using Tracy.Frameworks.Common.Extends;
+using SSharing.Frameworks.Common.Extends;
 
 namespace CodeBuilder
 {

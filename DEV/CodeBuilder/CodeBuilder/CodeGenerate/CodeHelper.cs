@@ -14,17 +14,17 @@ namespace CodeBuilder
         {
             if (string.IsNullOrEmpty(str)) return str;
 
-            string result = str ;
+            string result = str;
             if (Char.IsLower(str[0]))
             {
                 result = Char.ToUpper(str[0]).ToString() + str.Substring(1);
             }
 
             int index;
-            while((index = result.IndexOf('_')) >= 0)
+            while ((index = result.IndexOf('_')) >= 0)
             {
                 string c = string.Empty;
-                if(result.Length > index + 1)
+                if (result.Length > index + 1)
                 {
                     c = result.Substring(index + 1, 1).ToUpper();
                 }
