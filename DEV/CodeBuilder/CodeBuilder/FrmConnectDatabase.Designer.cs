@@ -74,7 +74,7 @@ namespace CodeBuilder
             this.txtDatabase.Name = "txtDatabase";
             this.txtDatabase.Size = new System.Drawing.Size(144, 21);
             this.txtDatabase.TabIndex = 2;
-            this.txtDatabase.Text = "TestDB";
+            this.txtDatabase.Text = "TmcDB_DEV";
             // 
             // label3
             // 
@@ -108,7 +108,7 @@ namespace CodeBuilder
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(144, 21);
             this.txtServer.TabIndex = 2;
-            this.txtServer.Text = ".";
+            this.txtServer.Text = "192.168.1.23";
             // 
             // rbIntegrated
             // 

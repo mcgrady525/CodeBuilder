@@ -81,7 +81,7 @@ namespace CodeBuilder.DataAccess
                 }
                 using (var cmd = new SqlCommand(String.Format("Select TOP 1 * From {0}", tableName), conn))
                 {
-                    using (var adapter= new SqlDataAdapter(cmd))
+                    using (var adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(dt);
                         adapter.FillSchema(dt, SchemaType.Source);
@@ -105,7 +105,7 @@ namespace CodeBuilder.DataAccess
 
             using (SqlConnection conn = new SqlConnection(FrmMainNew.s_ConnectString))
             {
-                if (conn.State!= ConnectionState.Open)
+                if (conn.State != ConnectionState.Open)
                 {
                     conn.Close();
                     conn.Open();
@@ -125,7 +125,13 @@ namespace CodeBuilder.DataAccess
                         {
                             if (dr.Read())
                             {
-                                column.Remark = dr[0].ToString();
+                                //特殊字符处理
+                                var remark = dr[0].ToString();
+                                if (!remark.IsNullOrEmpty())
+                                {
+                                    remark = remark.Trim().Replace("\r\n", "");
+                                }
+                                column.Remark = remark;
                             }
                         }
                     }
@@ -165,7 +171,13 @@ namespace CodeBuilder.DataAccess
                         {
                             if (dr.Read())
                             {
-                                property.Remark = dr[0].ToString();
+                                //特殊字符处理
+                                var remark = dr[0].ToString();
+                                if (!remark.IsNullOrEmpty())
+                                {
+                                    remark = remark.Trim().Replace("\r\n", "");
+                                }
+                                property.Remark = remark;
                             }
                         }
                     }
