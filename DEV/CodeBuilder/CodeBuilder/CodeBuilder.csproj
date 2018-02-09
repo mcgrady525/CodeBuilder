@@ -370,6 +370,17 @@
       <DependentUpon>DALTemplate.tt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Template\DOEntityTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DOEntityTemplate.txt</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Template\DOEntityTemplate.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DOEntityTemplate.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Template\POCOEntityTemplate.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

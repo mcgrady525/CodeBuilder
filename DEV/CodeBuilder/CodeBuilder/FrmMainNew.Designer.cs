@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -43,6 +43,8 @@
             this.rb_GenerateType_Batch = new System.Windows.Forms.RadioButton();
             this.rb_GenerateType_SingleTable = new System.Windows.Forms.RadioButton();
             this.gpParamConfig = new System.Windows.Forms.GroupBox();
+            this.txt_ParamConfig_ClassDescription = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_ParamConfig_SecondNameSpace = new System.Windows.Forms.TextBox();
             this.txt_ParamConfig_TopNameSpace = new System.Windows.Forms.TextBox();
@@ -70,8 +72,7 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.txt_ParamConfig_ClassDescription = new System.Windows.Forms.TextBox();
+            this.rb_CodeType_DO = new System.Windows.Forms.RadioButton();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -237,6 +238,22 @@
             this.gpParamConfig.TabStop = false;
             this.gpParamConfig.Text = "参数配置";
             // 
+            // txt_ParamConfig_ClassDescription
+            // 
+            this.txt_ParamConfig_ClassDescription.Location = new System.Drawing.Point(250, 24);
+            this.txt_ParamConfig_ClassDescription.Name = "txt_ParamConfig_ClassDescription";
+            this.txt_ParamConfig_ClassDescription.Size = new System.Drawing.Size(266, 21);
+            this.txt_ParamConfig_ClassDescription.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(203, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "描述：";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -305,6 +322,7 @@
             // 
             // gpCodeType
             // 
+            this.gpCodeType.Controls.Add(this.rb_CodeType_DO);
             this.gpCodeType.Controls.Add(this.lblTemplatePath);
             this.gpCodeType.Controls.Add(this.label4);
             this.gpCodeType.Controls.Add(this.rb_CodeType_Service);
@@ -338,7 +356,7 @@
             // rb_CodeType_Service
             // 
             this.rb_CodeType_Service.AutoSize = true;
-            this.rb_CodeType_Service.Location = new System.Drawing.Point(185, 37);
+            this.rb_CodeType_Service.Location = new System.Drawing.Point(258, 37);
             this.rb_CodeType_Service.Name = "rb_CodeType_Service";
             this.rb_CodeType_Service.Size = new System.Drawing.Size(65, 16);
             this.rb_CodeType_Service.TabIndex = 2;
@@ -350,7 +368,7 @@
             // rb_CodeType_DAL
             // 
             this.rb_CodeType_DAL.AutoSize = true;
-            this.rb_CodeType_DAL.Location = new System.Drawing.Point(111, 37);
+            this.rb_CodeType_DAL.Location = new System.Drawing.Point(184, 37);
             this.rb_CodeType_DAL.Name = "rb_CodeType_DAL";
             this.rb_CodeType_DAL.Size = new System.Drawing.Size(41, 16);
             this.rb_CodeType_DAL.TabIndex = 1;
@@ -466,24 +484,24 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column7.HeaderText = "属性名";
             this.Column7.Name = "Column7";
             this.Column7.Width = 140;
             // 
             // Column8
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column8.HeaderText = "属性类型";
             this.Column8.Name = "Column8";
             this.Column8.Width = 80;
             // 
             // Column9
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column9.HeaderText = "描述";
             this.Column9.Name = "Column9";
             this.Column9.Width = 200;
@@ -492,21 +510,17 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label5
+            // rb_CodeType_DO
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(203, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "描述：";
-            // 
-            // txt_ParamConfig_ClassDescription
-            // 
-            this.txt_ParamConfig_ClassDescription.Location = new System.Drawing.Point(250, 24);
-            this.txt_ParamConfig_ClassDescription.Name = "txt_ParamConfig_ClassDescription";
-            this.txt_ParamConfig_ClassDescription.Size = new System.Drawing.Size(266, 21);
-            this.txt_ParamConfig_ClassDescription.TabIndex = 4;
+            this.rb_CodeType_DO.AutoSize = true;
+            this.rb_CodeType_DO.Location = new System.Drawing.Point(120, 37);
+            this.rb_CodeType_DO.Name = "rb_CodeType_DO";
+            this.rb_CodeType_DO.Size = new System.Drawing.Size(35, 16);
+            this.rb_CodeType_DO.TabIndex = 5;
+            this.rb_CodeType_DO.TabStop = true;
+            this.rb_CodeType_DO.Text = "DO";
+            this.rb_CodeType_DO.UseVisualStyleBackColor = true;
+            this.rb_CodeType_DO.CheckedChanged += new System.EventHandler(this.rb_CodeType_CheckedChange);
             // 
             // FrmMainNew
             // 
@@ -591,7 +605,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox txt_ParamConfig_ClassDescription;
         private System.Windows.Forms.Label label5;
-
-
+        private System.Windows.Forms.RadioButton rb_CodeType_DO;
     }
 }

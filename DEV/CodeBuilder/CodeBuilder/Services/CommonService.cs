@@ -99,6 +99,10 @@ namespace CodeBuilder.Service
             {
                 templatePath = ConfigHelper.BASEDIRECTORY + ConfigHelper.GetAppSetting("POCOEntityTemplate");
             }
+            if (request.CodeType == CodeType.DOEntity)
+            {
+                templatePath = ConfigHelper.BASEDIRECTORY + ConfigHelper.GetAppSetting("DOEntityTemplate");
+            }
             if (request.CodeType == CodeType.DAL)
             {
                 templatePath = ConfigHelper.BASEDIRECTORY + ConfigHelper.GetAppSetting("DALTemplate");

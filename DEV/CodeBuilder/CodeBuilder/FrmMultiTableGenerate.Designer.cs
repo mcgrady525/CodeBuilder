@@ -63,6 +63,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btn_Operation_Close = new System.Windows.Forms.Button();
             this.btn_Operation_OK = new System.Windows.Forms.Button();
+            this.rb_CodeType_DO = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -361,6 +362,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.rb_CodeType_DO);
             this.groupBox6.Controls.Add(this.lblTemplatePath);
             this.groupBox6.Controls.Add(this.label6);
             this.groupBox6.Controls.Add(this.rb_CodeType_Service);
@@ -394,7 +396,7 @@
             // rb_CodeType_Service
             // 
             this.rb_CodeType_Service.AutoSize = true;
-            this.rb_CodeType_Service.Location = new System.Drawing.Point(187, 30);
+            this.rb_CodeType_Service.Location = new System.Drawing.Point(245, 30);
             this.rb_CodeType_Service.Name = "rb_CodeType_Service";
             this.rb_CodeType_Service.Size = new System.Drawing.Size(65, 16);
             this.rb_CodeType_Service.TabIndex = 7;
@@ -406,7 +408,7 @@
             // rb_CodeType_DAL
             // 
             this.rb_CodeType_DAL.AutoSize = true;
-            this.rb_CodeType_DAL.Location = new System.Drawing.Point(113, 30);
+            this.rb_CodeType_DAL.Location = new System.Drawing.Point(171, 30);
             this.rb_CodeType_DAL.Name = "rb_CodeType_DAL";
             this.rb_CodeType_DAL.Size = new System.Drawing.Size(41, 16);
             this.rb_CodeType_DAL.TabIndex = 6;
@@ -498,6 +500,18 @@
             this.btn_Operation_OK.UseVisualStyleBackColor = true;
             this.btn_Operation_OK.Click += new System.EventHandler(this.btn_Operation_OK_Click);
             // 
+            // rb_CodeType_DO
+            // 
+            this.rb_CodeType_DO.AutoSize = true;
+            this.rb_CodeType_DO.Location = new System.Drawing.Point(115, 30);
+            this.rb_CodeType_DO.Name = "rb_CodeType_DO";
+            this.rb_CodeType_DO.Size = new System.Drawing.Size(35, 16);
+            this.rb_CodeType_DO.TabIndex = 10;
+            this.rb_CodeType_DO.TabStop = true;
+            this.rb_CodeType_DO.Text = "DO";
+            this.rb_CodeType_DO.UseVisualStyleBackColor = true;
+            this.rb_CodeType_DO.CheckedChanged += new System.EventHandler(this.rb_CodeType_CheckedChange);
+            // 
             // FrmMultiTableGenerate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -577,5 +591,6 @@
         private System.Windows.Forms.RadioButton rb_CodeType_Service;
         private System.Windows.Forms.RadioButton rb_CodeType_DAL;
         private System.Windows.Forms.RadioButton rb_CodeType_POCO;
+        private System.Windows.Forms.RadioButton rb_CodeType_DO;
     }
 }

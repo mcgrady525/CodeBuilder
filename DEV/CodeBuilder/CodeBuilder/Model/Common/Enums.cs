@@ -32,7 +32,10 @@ namespace CodeBuilder.Model.Common
         DAL = 2,
 
         [Description("Service")]
-        Service= 3
+        Service= 3,
+
+        [Description("DO")]
+        DOEntity = 4
     }
 
 

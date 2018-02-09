@@ -1,0 +1,52 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".txt" encoding="utf-8" #>
+<#@ import namespace="CodeBuilder.Model.Template" #>
+<#@ parameter type="CodeBuilder.Model.Template.EntityClassInfo" name="entity" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+/// <summary>
+/// <#= entity.IsSetClassDescription?entity.ClassDescription:"" #>
+/// </summary>
+namespace <#= string.Format("{0}.{1}", entity.TopNameSpace, entity.SecondNameSpace) #>
+{
+	[Table("<#= entity.OriginalClassName #>")]
+	public partial class <#= entity.ClassName#>
+	{
+		public <#= entity.ClassName#>()
+		{
+			
+		}
+
+<# 
+	foreach(EntityClassPropertyInfo property in entity.RopertyList) { 
+#>
+		/// <summary>
+		/// <#= string.IsNullOrEmpty(property.Remark)?property.OriginalPropertyName: property.Remark #>
+		/// </summary>
+<# 
+		if (property.IsPrimaryKey){ 
+#>
+		[Key]
+		[Column("<#= property.OriginalPropertyName #>")] 
+<# 
+		}
+        else
+        {
+#>
+		[Column("<#= property.OriginalPropertyName #>")] 
+<# 
+		} 
+#>
+		public <#= property.PropertyType#> <#= property.PropertyName#> { get; set; }
+		
+<# 
+	} 
+#>
+	}
+}

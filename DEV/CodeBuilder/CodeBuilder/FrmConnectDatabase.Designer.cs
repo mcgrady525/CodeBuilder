@@ -74,7 +74,7 @@ namespace CodeBuilder
             this.txtDatabase.Name = "txtDatabase";
             this.txtDatabase.Size = new System.Drawing.Size(144, 21);
             this.txtDatabase.TabIndex = 2;
-            this.txtDatabase.Text = "DapperDemoDB";
+            this.txtDatabase.Text = "TestDB";
             // 
             // label3
             // 

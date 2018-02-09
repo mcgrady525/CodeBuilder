@@ -180,6 +180,9 @@ namespace CodeBuilder
                 case "数据库实体":
                     templatePath = ConfigHelper.GetAppSetting("POCOEntityTemplate");
                     break;
+                case "DO":
+                    templatePath = ConfigHelper.GetAppSetting("DOEntityTemplate");
+                    break;
                 case "DAL":
                     templatePath = ConfigHelper.GetAppSetting("DALTemplate");
                     break;
@@ -218,7 +221,7 @@ namespace CodeBuilder
                     ClassDescription = this.txt_ParamConfig_ClassDescription.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_ClassDescription.Text.Trim(),
                     TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
                     SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
-                    CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity
+                    CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DO.Checked ? CodeType.DOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity
                 };
                 result = commonService.CreateCode(request);
             }
