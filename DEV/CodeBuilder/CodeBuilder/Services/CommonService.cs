@@ -144,13 +144,16 @@ namespace CodeBuilder.Service
                 //退出不继续
                 throw new Exception(string.Format("生成代码过程中失败,失败原因:{0}", errorWarn.ToString()));
             }
-            
+
             #endregion
 
             //批量生成时写到输出目录然后再返回文本
             if (request.GenerateType == GenerateType.MultiTable)
             {
-                File.WriteAllText(string.Format("{0}\\{1}.cs", request.OutPutPath, entityClassInfo.ClassName), result);
+                lock (lockObj)
+                {
+                    File.WriteAllText(string.Format("{0}\\{1}.cs", request.OutPutPath, entityClassInfo.ClassName), result, Encoding.UTF8); 
+                }
             }
 
             return result;
