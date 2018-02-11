@@ -133,18 +133,17 @@ namespace CodeBuilder
                     };
                     requests.Add(request);
                 }
-
-                //使用并行
-                //使用并行会有各种问题，先不使用多线程
+                
                 if (requests.HasValue())
                 {
-                    //按tableName排序
+                    // 按tableName排序
                     requests = requests.OrderBy(p => p.TableName).ToList();
-
-                    foreach (var item in requests)
+                    
+                    // 并行生成
+                    Parallel.ForEach(requests, new ParallelOptions { MaxDegreeOfParallelism = 50 }, item => 
                     {
                         commonService.CreateCode(item);
-                    }
+                    });
                 }
 
                 result = "批量生成代码成功!";
