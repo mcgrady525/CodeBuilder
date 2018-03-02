@@ -19,6 +19,7 @@ namespace CodeBuilder.Service
     {
         private static readonly CommonDao commonDao = new CommonDao();
         private static object lockObj = new object();
+        private static object lockErrorLogObj = new object();
 
         /// <summary>
         /// 获取当前数据库中的所有用户表和视图列表
@@ -135,14 +136,14 @@ namespace CodeBuilder.Service
 
             if (!errorWarn.ToString().IsNullOrEmpty())//有错误
             {
-                if (!File.Exists("Error.log"))
+                lock (lockErrorLogObj)
                 {
-                    File.Create("Error.log");
+                    if (!File.Exists("Error.log"))
+                    {
+                        File.Create("Error.log");
+                    }
+                    File.WriteAllText("Error.log", errorWarn.ToString()); 
                 }
-                File.WriteAllText("Error.log", errorWarn.ToString());
-
-                //退出不继续
-                throw new Exception(string.Format("生成代码过程中失败,失败原因:{0}", errorWarn.ToString()));
             }
 
             #endregion
