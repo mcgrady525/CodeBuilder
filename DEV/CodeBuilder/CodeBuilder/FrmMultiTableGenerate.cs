@@ -33,8 +33,8 @@ namespace CodeBuilder
         /// </summary>
         private void InitControls()
         {
-            //代码类型默认为数据库实体
-            this.rb_CodeType_POCO.Checked = true;
+            //代码类型默认为DO实体
+            this.rb_CodeType_DO.Checked = true;
         }
 
         /// <summary>
@@ -52,9 +52,6 @@ namespace CodeBuilder
             var templatePath = string.Empty;
             switch (((RadioButton)sender).Text.ToString())
             {
-                case "数据库实体":
-                    templatePath = ConfigHelper.GetAppSetting("POCOEntityTemplate");
-                    break;
                 case "DO":
                     templatePath = ConfigHelper.GetAppSetting("DOEntityTemplate");
                     break;
@@ -128,7 +125,7 @@ namespace CodeBuilder
                         GenerateType = Model.Common.GenerateType.MultiTable,
                         TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
                         SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
-                        CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DO.Checked ? CodeType.DOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity,
+                        CodeType = this.rb_CodeType_DO.Checked ? CodeType.DOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.DOEntity,
                         OutPutPath = this.txt_OutPut_Path.Text.Trim()
                     };
                     requests.Add(request);
@@ -140,7 +137,7 @@ namespace CodeBuilder
                     requests = requests.OrderBy(p => p.TableName).ToList();
                     
                     // 并行生成
-                    Parallel.ForEach(requests, new ParallelOptions { MaxDegreeOfParallelism = 50 }, item => 
+                    Parallel.ForEach(requests, new ParallelOptions { MaxDegreeOfParallelism = 4 }, item => 
                     {
                         commonService.CreateCode(item);
                     });

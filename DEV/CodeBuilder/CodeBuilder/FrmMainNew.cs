@@ -39,10 +39,9 @@ namespace CodeBuilder
         private void InitControls()
         {
             //生成类型默认为单表生成
-            //代码类型默认为数据库实体，并展示代码模板路径
             //操作中默认只启用单表生成按钮，禁用批量生成按钮
             this.rb_GenerateType_SingleTable.Checked = true;
-            this.rb_CodeType_POCO.Checked = true;
+            this.rb_CodeType_DO.Checked = true;
             this.btn_Operation_Batch.Enabled = false;
 
             //状态栏
@@ -180,9 +179,6 @@ namespace CodeBuilder
             var templatePath = string.Empty;
             switch (((RadioButton)sender).Text.ToString())
             {
-                case "数据库实体":
-                    templatePath = ConfigHelper.GetAppSetting("POCOEntityTemplate");
-                    break;
                 case "DO":
                     templatePath = ConfigHelper.GetAppSetting("DOEntityTemplate");
                     break;
@@ -224,7 +220,7 @@ namespace CodeBuilder
                     ClassDescription = this.txt_ParamConfig_ClassDescription.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_ClassDescription.Text.Trim(),
                     TopNameSpace = this.txt_ParamConfig_TopNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_TopNameSpace.Text.Trim(),
                     SecondNameSpace = this.txt_ParamConfig_SecondNameSpace.Text.IsNullOrEmpty() ? "" : this.txt_ParamConfig_SecondNameSpace.Text.Trim(),
-                    CodeType = this.rb_CodeType_POCO.Checked ? CodeType.POCOEntity : this.rb_CodeType_DO.Checked ? CodeType.DOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.POCOEntity
+                    CodeType = this.rb_CodeType_DO.Checked ? CodeType.DOEntity : this.rb_CodeType_DAL.Checked ? CodeType.DAL : this.rb_CodeType_Service.Checked ? CodeType.Service : CodeType.DOEntity
                 };
                 result = commonService.CreateCode(request);
             }

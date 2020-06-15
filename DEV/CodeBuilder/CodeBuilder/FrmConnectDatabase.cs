@@ -69,5 +69,30 @@ namespace CodeBuilder
             }
 
         }
+
+        private void VerifyType_CheckedChanged(object sender, EventArgs e)
+        {
+            //验证方式
+            if (!((RadioButton)sender).Checked)
+            {
+                return;
+            }
+
+            var rbText= ((RadioButton)sender).Text;
+            if (rbText== "sql验证")
+            {
+                this.txtUserName.Enabled = true;
+                this.txtUserName.Text = "";
+                this.txtPassword.Enabled = true;
+                this.txtPassword.Text = "";
+            }
+            if (rbText== "集成验证")
+            {
+                this.txtUserName.Enabled = false;
+                this.txtUserName.Text = "";
+                this.txtPassword.Enabled = false;
+                this.txtPassword.Text = "";
+            }
+        }
     }
 }

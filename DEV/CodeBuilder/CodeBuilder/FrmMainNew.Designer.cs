@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,11 +53,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.gpCodeType = new System.Windows.Forms.GroupBox();
+            this.rb_CodeType_DO = new System.Windows.Forms.RadioButton();
             this.lblTemplatePath = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.rb_CodeType_Service = new System.Windows.Forms.RadioButton();
             this.rb_CodeType_DAL = new System.Windows.Forms.RadioButton();
-            this.rb_CodeType_POCO = new System.Windows.Forms.RadioButton();
             this.gpOperation = new System.Windows.Forms.GroupBox();
             this.btn_Operation_Batch = new System.Windows.Forms.Button();
             this.btn_Operation_Single = new System.Windows.Forms.Button();
@@ -72,7 +72,6 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.rb_CodeType_DO = new System.Windows.Forms.RadioButton();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -327,7 +326,6 @@
             this.gpCodeType.Controls.Add(this.label4);
             this.gpCodeType.Controls.Add(this.rb_CodeType_Service);
             this.gpCodeType.Controls.Add(this.rb_CodeType_DAL);
-            this.gpCodeType.Controls.Add(this.rb_CodeType_POCO);
             this.gpCodeType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpCodeType.Location = new System.Drawing.Point(0, 0);
             this.gpCodeType.Name = "gpCodeType";
@@ -335,6 +333,18 @@
             this.gpCodeType.TabIndex = 0;
             this.gpCodeType.TabStop = false;
             this.gpCodeType.Text = "代码类型";
+            // 
+            // rb_CodeType_DO
+            // 
+            this.rb_CodeType_DO.AutoSize = true;
+            this.rb_CodeType_DO.Location = new System.Drawing.Point(20, 37);
+            this.rb_CodeType_DO.Name = "rb_CodeType_DO";
+            this.rb_CodeType_DO.Size = new System.Drawing.Size(35, 16);
+            this.rb_CodeType_DO.TabIndex = 5;
+            this.rb_CodeType_DO.TabStop = true;
+            this.rb_CodeType_DO.Text = "DO";
+            this.rb_CodeType_DO.UseVisualStyleBackColor = true;
+            this.rb_CodeType_DO.CheckedChanged += new System.EventHandler(this.rb_CodeType_CheckedChange);
             // 
             // lblTemplatePath
             // 
@@ -356,7 +366,7 @@
             // rb_CodeType_Service
             // 
             this.rb_CodeType_Service.AutoSize = true;
-            this.rb_CodeType_Service.Location = new System.Drawing.Point(258, 37);
+            this.rb_CodeType_Service.Location = new System.Drawing.Point(158, 37);
             this.rb_CodeType_Service.Name = "rb_CodeType_Service";
             this.rb_CodeType_Service.Size = new System.Drawing.Size(65, 16);
             this.rb_CodeType_Service.TabIndex = 2;
@@ -368,7 +378,7 @@
             // rb_CodeType_DAL
             // 
             this.rb_CodeType_DAL.AutoSize = true;
-            this.rb_CodeType_DAL.Location = new System.Drawing.Point(184, 37);
+            this.rb_CodeType_DAL.Location = new System.Drawing.Point(84, 37);
             this.rb_CodeType_DAL.Name = "rb_CodeType_DAL";
             this.rb_CodeType_DAL.Size = new System.Drawing.Size(41, 16);
             this.rb_CodeType_DAL.TabIndex = 1;
@@ -376,18 +386,6 @@
             this.rb_CodeType_DAL.Text = "DAL";
             this.rb_CodeType_DAL.UseVisualStyleBackColor = true;
             this.rb_CodeType_DAL.CheckedChanged += new System.EventHandler(this.rb_CodeType_CheckedChange);
-            // 
-            // rb_CodeType_POCO
-            // 
-            this.rb_CodeType_POCO.AutoSize = true;
-            this.rb_CodeType_POCO.Location = new System.Drawing.Point(18, 37);
-            this.rb_CodeType_POCO.Name = "rb_CodeType_POCO";
-            this.rb_CodeType_POCO.Size = new System.Drawing.Size(83, 16);
-            this.rb_CodeType_POCO.TabIndex = 0;
-            this.rb_CodeType_POCO.TabStop = true;
-            this.rb_CodeType_POCO.Text = "数据库实体";
-            this.rb_CodeType_POCO.UseVisualStyleBackColor = true;
-            this.rb_CodeType_POCO.CheckedChanged += new System.EventHandler(this.rb_CodeType_CheckedChange);
             // 
             // gpOperation
             // 
@@ -484,24 +482,24 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column7.HeaderText = "属性名";
             this.Column7.Name = "Column7";
             this.Column7.Width = 140;
             // 
             // Column8
             // 
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column8.HeaderText = "属性类型";
             this.Column8.Name = "Column8";
             this.Column8.Width = 80;
             // 
             // Column9
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column9.HeaderText = "描述";
             this.Column9.Name = "Column9";
             this.Column9.Width = 200;
@@ -509,18 +507,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // rb_CodeType_DO
-            // 
-            this.rb_CodeType_DO.AutoSize = true;
-            this.rb_CodeType_DO.Location = new System.Drawing.Point(120, 37);
-            this.rb_CodeType_DO.Name = "rb_CodeType_DO";
-            this.rb_CodeType_DO.Size = new System.Drawing.Size(35, 16);
-            this.rb_CodeType_DO.TabIndex = 5;
-            this.rb_CodeType_DO.TabStop = true;
-            this.rb_CodeType_DO.Text = "DO";
-            this.rb_CodeType_DO.UseVisualStyleBackColor = true;
-            this.rb_CodeType_DO.CheckedChanged += new System.EventHandler(this.rb_CodeType_CheckedChange);
             // 
             // FrmMainNew
             // 
@@ -586,7 +572,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_ParamConfig_ClassName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton rb_CodeType_POCO;
         private System.Windows.Forms.Button btn_Operation_Batch;
         private System.Windows.Forms.Button btn_Operation_Single;
         private System.Windows.Forms.RadioButton rb_CodeType_Service;

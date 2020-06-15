@@ -119,6 +119,7 @@ namespace CodeBuilder
             this.rbIntegrated.TabIndex = 3;
             this.rbIntegrated.Text = "集成验证";
             this.rbIntegrated.UseVisualStyleBackColor = true;
+            this.rbIntegrated.CheckedChanged += new System.EventHandler(this.VerifyType_CheckedChanged);
             // 
             // rbSql
             // 
@@ -131,6 +132,7 @@ namespace CodeBuilder
             this.rbSql.TabStop = true;
             this.rbSql.Text = "sql验证";
             this.rbSql.UseVisualStyleBackColor = true;
+            this.rbSql.CheckedChanged += new System.EventHandler(this.VerifyType_CheckedChanged);
             // 
             // btnTestConnection
             // 

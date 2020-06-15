@@ -96,10 +96,6 @@ namespace CodeBuilder.Service
             commonDao.SetEntityClassPropertyRemark(entityClassInfo, request);
 
             var templatePath = string.Empty;
-            if (request.CodeType == CodeType.POCOEntity)
-            {
-                templatePath = ConfigHelper.BASEDIRECTORY + ConfigHelper.GetAppSetting("POCOEntityTemplate");
-            }
             if (request.CodeType == CodeType.DOEntity)
             {
                 templatePath = ConfigHelper.BASEDIRECTORY + ConfigHelper.GetAppSetting("DOEntityTemplate");
@@ -126,8 +122,7 @@ namespace CodeBuilder.Service
 
             string input = File.ReadAllText(templatePath);
             result = new Engine().ProcessTemplate(input, host);
-
-            #region 调试时使用
+            
             StringBuilder errorWarn = new StringBuilder();
             foreach (CompilerError error in host.Errors)
             {
@@ -145,8 +140,6 @@ namespace CodeBuilder.Service
                     File.WriteAllText("Error.log", errorWarn.ToString()); 
                 }
             }
-
-            #endregion
 
             //批量生成时写到输出目录然后再返回文本
             if (request.GenerateType == GenerateType.MultiTable)
