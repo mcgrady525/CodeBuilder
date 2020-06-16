@@ -11,7 +11,7 @@ namespace CodeBuilder.Model.Template
     [Serializable]
     public class EntityClassInfo
     {
-        public EntityClassInfo(DataTable dt, CreateCodeRequest request)
+        public EntityClassInfo(DataTable dt, List<ColumnInfo> columnInfos, CreateCodeRequest request)
         {
             this.OriginalClassName = request.TableName;
             this.ClassName = CodeBuilderHelper.GetClassNameByTableName(request.TableName);
@@ -20,20 +20,20 @@ namespace CodeBuilder.Model.Template
             this.SecondNameSpace = request.SecondNameSpace;
             this.IsSetClassDescription = request.GenerateType == Common.GenerateType.SingleTable;//只有单表生成时才设置类的描述
 
-            List<EntityClassPropertyInfo> ropertyListTemp = new List<EntityClassPropertyInfo>();
+            List<EntityClassPropertyInfo> propertyListTemp = new List<EntityClassPropertyInfo>();
 
             foreach (DataColumn dcol in dt.Columns)
             {
-                ropertyListTemp.Add(new EntityClassPropertyInfo(dcol));
+                propertyListTemp.Add(new EntityClassPropertyInfo(dcol, columnInfos));
             }
-            this.RopertyList = ropertyListTemp;
+            this.PropertyList = propertyListTemp;
 
             List<EntityClassPropertyInfo> primaryKeyListTemp = new List<EntityClassPropertyInfo>();
-            List<EntityClassPropertyInfo> notPrimaryKeyListTemp = new List<EntityClassPropertyInfo>(ropertyListTemp);
+            List<EntityClassPropertyInfo> notPrimaryKeyListTemp = new List<EntityClassPropertyInfo>(propertyListTemp);
             foreach (DataColumn dcol in dt.PrimaryKey)
             {
-                primaryKeyListTemp.Add(new EntityClassPropertyInfo(dcol));
-                notPrimaryKeyListTemp.Remove(new EntityClassPropertyInfo(dcol));
+                primaryKeyListTemp.Add(new EntityClassPropertyInfo(dcol, columnInfos));
+                notPrimaryKeyListTemp.Remove(new EntityClassPropertyInfo(dcol, columnInfos));
             }
             this.PrimaryKeyList = primaryKeyListTemp;
             this.NotPrimaryKeyList = notPrimaryKeyListTemp;
@@ -42,7 +42,7 @@ namespace CodeBuilder.Model.Template
         /// <summary>
         /// 所有字段
         /// </summary>
-        public List<EntityClassPropertyInfo> RopertyList
+        public List<EntityClassPropertyInfo> PropertyList
         {
             get;
             private set;

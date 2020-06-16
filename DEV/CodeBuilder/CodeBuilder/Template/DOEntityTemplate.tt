@@ -16,12 +16,10 @@ namespace <#= string.Format("{0}.{1}", entity.TopNameSpace, entity.SecondNameSpa
 	public partial class <#= entity.ClassName#>
 	{
 		public <#= entity.ClassName#>()
-		{
-			
-		}
+		{ }
 
 <# 
-	foreach(EntityClassPropertyInfo property in entity.RopertyList) { 
+	foreach(EntityClassPropertyInfo property in entity.PropertyList) { 
 #>
 		/// <summary>
 		/// <#= string.IsNullOrEmpty(property.Remark)?property.OriginalPropertyName: property.Remark #>
@@ -33,9 +31,20 @@ namespace <#= string.Format("{0}.{1}", entity.TopNameSpace, entity.SecondNameSpa
 <# 
 		}
 #>
-		[Column("<#= property.OriginalPropertyName #>")] 
+<# 
+		if (!string.IsNullOrEmpty(property.TypeName)){
+#>
+		[Column("<#= property.OriginalPropertyName #>",TypeName = "<#= property.TypeName #>")]
+<# 
+		}
+		else {
+#>
+		[Column("<#= property.OriginalPropertyName #>")]
+<# 
+		}
+#>
 		public <#= property.PropertyType#> <#= property.PropertyName#> { get; set; }
-		
+	
 <# 
 	} 
 #>

@@ -157,7 +157,7 @@ namespace CodeBuilder.DataAccess
                     conn.Open();
                 }
 
-                foreach (var property in entity.RopertyList)
+                foreach (var property in entity.PropertyList)
                 {
                     string sql = String.Format(
                         "Select value From ::fn_listextendedproperty (NULL, 'schema', '{0}', 'table', '{1}', 'column', '{2}')",

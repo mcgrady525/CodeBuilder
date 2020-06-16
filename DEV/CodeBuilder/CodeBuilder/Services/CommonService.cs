@@ -90,7 +90,8 @@ namespace CodeBuilder.Service
             //4，返回生成后的代码文本(单表生成时返回代码文本，批量生成时写到输出目录)
             var result = string.Empty;
             var dt = commonDao.GetTableSchemaBySqlDataAdapter(request.TableName);
-            var entityClassInfo = new EntityClassInfo(dt, request);
+            var columnInfos = GetTableSchemaBySqlDataReader(request.TableName);
+            var entityClassInfo = new EntityClassInfo(dt, columnInfos, request);
 
             //设置字段的备注信息
             commonDao.SetEntityClassPropertyRemark(entityClassInfo, request);

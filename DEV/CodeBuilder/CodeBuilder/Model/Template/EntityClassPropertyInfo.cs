@@ -10,7 +10,7 @@ namespace CodeBuilder.Model.Template
     [Serializable]
     public class EntityClassPropertyInfo
     {
-        public EntityClassPropertyInfo(DataColumn dcol)
+        public EntityClassPropertyInfo(DataColumn dcol, List<ColumnInfo> columnInfos)
         {
             this.OriginalPropertyName = dcol.ColumnName;
             this.PropertyName = CodeHelper.MakeFirstLetterUppercase(dcol.ColumnName);
@@ -25,7 +25,16 @@ namespace CodeBuilder.Model.Template
                 }
                 this.IsValueType = true;
             }
+
+            //TypeName = "varchar"处理
+            var columnInfo = columnInfos.FirstOrDefault(p => p.Name == OriginalPropertyName);
+            if (columnInfo != null && columnInfo.CodeTypeName == "string")
+            {
+                TypeName = columnInfo.TypeName;
+            }
         }
+
+        public string TypeName { get; set; }
 
         /// <summary>
         /// 原始字段名称(即数据库中的名称)
@@ -78,6 +87,6 @@ namespace CodeBuilder.Model.Template
             }
             return false;
         }
-        
+
     }
 }
